@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="82" height="82" viewBox="0 0 82 82">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1" data-name="Rectangle 1" width="26.848" height="15.214" transform="matrix(0.999, -0.035, 0.035, 0.999, 0, 0.937)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <clipPath id="clip-Artboard_1">
+      <rect width="82" height="82"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_1" data-name="Artboard – 1" clip-path="url(#clip-Artboard_1)">
+    <g id="Group_1" data-name="Group 1" transform="translate(-885.849 -442.848)">
+      <path id="Path_1" data-name="Path 1" d="M895.1,513.519s.74-26.083,11.355-28.779,19.63,1.716,23.67,1.535,17.942.315,22.393-1.535,2.972,6.819,2.972,6.819-7.427,4.856-22.953,4.4a15.54,15.54,0,0,0-4.082.373c-3.169.714-1.116,3.3-1.454,5.826a67.908,67.908,0,0,0-.4,9.84" transform="translate(0 -2.823)" fill="none" stroke="#fa3c7a" stroke-width="2"/>
+      <path id="Path_2" data-name="Path 2" d="M954.057,505.771s.57,7.2,1.123,9.577" transform="translate(-6.194 -5.124)" fill="none" stroke="#fa3c7a" stroke-width="2"/>
+      <path id="Path_3" data-name="Path 3" d="M906.9,502.866v12.37" transform="translate(-1.24 -4.819)" fill="none" stroke="#fa3c7a" stroke-width="2"/>
+      <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(904.855 457)" fill="none" stroke="#fa3c7a" stroke-width="2">
+        <circle cx="10.739" cy="10.739" r="10.739" stroke="none"/>
+        <circle cx="10.739" cy="10.739" r="9.739" fill="none"/>
+      </g>
+      <path id="Path_5" data-name="Path 5" d="M961.645,493.722l3.945,20.159" transform="translate(-6.991 -3.858)" fill="none" stroke="#fa3c7a" stroke-width="2"/>
+      <g id="Mask_Group_1" data-name="Mask Group 1" transform="translate(927.29 464.901)" clip-path="url(#clip-path)">
+        <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(2.19 1.049)" fill="none" stroke="#fa3c7a" stroke-width="2">
+          <circle cx="10.739" cy="10.739" r="10.739" stroke="none"/>
+          <circle cx="10.739" cy="10.739" r="9.739" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
