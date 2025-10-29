@@ -8,7 +8,7 @@ const HomeLayout = () => {
         <WidgetPlaceholder id="AppHead" type="AppHead" />
       </head>
       <body>
-        <div className="outer">
+        <main className="outer" role="main">
           <WidgetPlaceholder id="CommonHeader" type="CommonHeader" />
           <WidgetPlaceholder id="HomeBanner" type="HomeBanner" />
           <WidgetPlaceholder id="AnimationHelpers" type="AnimationHelpers" />
@@ -20,7 +20,7 @@ const HomeLayout = () => {
           <WidgetPlaceholder id="HomeArticles" type="HomeArticles" />
           <WidgetPlaceholder id="CommonFooter" type="CommonFooter" />
           <WidgetPlaceholder id="AnalyticsHelpers" type="AnalyticsHelpers" />
-        </div>
+        </main>
       </body>
     </html>
   );

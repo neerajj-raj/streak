@@ -92,9 +92,11 @@ const CommonFooter = (props: CommonFooterProps) => {
                     {/* Forcefully adding whatsapp */}
                     {
                       main_footer?.contact_block?.whatsapp_number && (
-                        <a href={`https://wa.me/${main_footer?.contact_block?.whatsapp_number}`} target="_blank">
-                          <img src="icons/whatsapp.svg" alt="whatsapp" loading="lazy" />
-                        </a>
+                        <li>
+                          <a href={`https://wa.me/${main_footer?.contact_block?.whatsapp_number}`} target="_blank">
+                            <img src="icons/whatsapp.svg" alt="whatsapp" loading="lazy" />
+                          </a>
+                        </li>
                       )
                     }
                   </ul>
