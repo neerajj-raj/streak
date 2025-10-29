@@ -5,51 +5,61 @@ export const getHomePageData = async () => {
     "menus": {
       "header-menu": [
         {
+          "id": 288,
           "title": "About Us",
           "url": "https://loremwellnesscare.com/about-us/",
           "parent": "0"
         },
         {
+          "id": 21,
           "title": "Services",
           "url": "http://loremwellnesscare.com/#service",
           "parent": "0"
         },
         {
+          "id": 599,
           "title": "Behavior Therapy",
           "url": "https://loremwellnesscare.com/services/best-behavior-therapy-center-in-kochi/",
           "parent": "21"
         },
         {
+          "id": 418,
           "title": "Speech Therapy",
           "url": "https://loremwellnesscare.com/services/best-speech-therapy-center-in-kochi/",
           "parent": "21"
         },
         {
+          "id": 417,
           "title": "Special Education",
           "url": "https://loremwellnesscare.com/services/best-special-education-services-in-kochi/",
           "parent": "21"
         },
         {
+          "id": 415,
           "title": "Physiotherapy",
           "url": "https://loremwellnesscare.com/services/best-physiotherapy-services-in-kochi/",
           "parent": "21"
         },
         {
+          "id": 412,
           "title": "Occupational Therapy",
           "url": "https://loremwellnesscare.com/services/best-occupational-therapy-in-kochi/",
           "parent": "21"
         },
         {
+          "id": 22,
           "title": "Our Team",
           "url": "http://loremwellnesscare.com/about-us/#team",
           "parent": "0"
         },
         {
+          "id": 287,
           "title": "Blog",
           "url": "https://loremwellnesscare.com/blog/",
           "parent": "0"
         },
         {
+          "id": 289,
           "title": "Contact Us",
           "url": "https://loremwellnesscare.com/contact-us/",
           "parent": "0"
@@ -57,31 +67,37 @@ export const getHomePageData = async () => {
       ],
       "footer-quick-links-menu": [
         {
+          "id": 64,
           "title": "Home",
           "url": "https://loremwellnesscare.com/",
           "parent": "0"
         },
         {
+          "id": 349,
           "title": "About Us",
           "url": "https://loremwellnesscare.com/about-us/",
           "parent": "0"
         },
         {
+          "id": 66,
           "title": "Services",
           "url": "http://loremwellnesscare.com/#service",
           "parent": "0"
         },
         {
+          "id": 67,
           "title": "Our Team",
           "url": "http://loremwellnesscare.com/about-us/#team",
           "parent": "0"
         },
         {
+          "id": 348,
           "title": "Blog",
           "url": "https://loremwellnesscare.com/blog/",
           "parent": "0"
         },
         {
+          "id": 350,
           "title": "Contact Us",
           "url": "https://loremwellnesscare.com/contact-us/",
           "parent": "0"
@@ -89,21 +105,25 @@ export const getHomePageData = async () => {
       ],
       "footer-service-menu1": [
         {
+          "id": 351,
           "title": "Best Speech Therapy Center in Kochi",
           "url": "https://loremwellnesscare.com/services/best-speech-therapy-center-in-kochi/",
           "parent": "0"
         },
         {
+          "id": 352,
           "title": "Best Special Education Services in Kochi",
           "url": "https://loremwellnesscare.com/services/best-special-education-services-in-kochi/",
           "parent": "0"
         },
         {
+          "id": 353,
           "title": "Best Physiotherapy Center in Kochi",
           "url": "https://loremwellnesscare.com/services/best-physiotherapy-services-in-kochi/",
           "parent": "0"
         },
         {
+          "id": 355,
           "title": "Best Occupational Therapy in Kochi",
           "url": "https://loremwellnesscare.com/services/best-occupational-therapy-in-kochi/",
           "parent": "0"
@@ -2819,7 +2839,18 @@ export const getHomePageData = async () => {
     HomeAbout: homeContents?.acf?.about_section ?? {},
     HomeTeam: { team_section: commonContents?.options?.team_section ?? {}, ...homeContents?.acf?.team_section ?? {} },
     HomeArticles: { blogs: commonContents?.blogs ?? [], ...homeContents?.acf?.blog_section ?? {} },
-    CommonFooter: { ...commonContents?.options ?? {}, quickLinks: commonContents?.menus?.["footer-quick-links-menu"], menu1: commonContents?.menus?.["footer-service-menu1"] }
+    CommonHeader: {
+      headerPhone: commonContents?.options?.header_phone ?? "",
+      siteLogo: commonContents?.options?.logo ?? "",
+      mobile_contact_button: commonContents?.options?.mobile_contact_button ?? "",
+      mobile_contact_button_link: commonContents?.options?.mobile_contact_button_link ?? "",
+      headerMenus: commonContents?.menus?.["header-menu"] ?? [],
+    },
+    CommonFooter: {
+      ...commonContents?.options ?? {},
+      quickLinks: commonContents?.menus?.["footer-quick-links-menu"] ?? [],
+      menu1: commonContents?.menus?.["footer-service-menu1"] ?? [],
+    }
   };
 };
 

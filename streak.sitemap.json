@@ -8,6 +8,10 @@
       "rootLayout": "HomeLayout",
       "widgets": [
         {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
           "id": "HomeBanner",
           "type": "HomeBanner"
         },

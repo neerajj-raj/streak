@@ -8,15 +8,16 @@ const HomeLayout = () => {
         {/* <WidgetPlaceholder id="AppHead" type="AppHead" /> */}
         <meta charset="utf-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"></meta>
-        <link rel="stylesheet" href="/styles/global.css" />
-        <link rel="stylesheet" href="/styles/mobile.css" />
-        <link rel="stylesheet" href="/styles/fonts.css" />
         <link rel="stylesheet" href="/styles/aos.css" />
+        <link rel="stylesheet" href="/styles/global.css" />
+        <link rel="stylesheet" href="/styles/menu.css" />
+        <link rel="stylesheet" href="/styles/mobile.css" />
         <link rel="stylesheet" href="/styles/flickity.css" />
-        
+        <link rel="stylesheet" href="/styles/fonts.css" />
       </head>
       <body>
         <div className="outer">
+          <WidgetPlaceholder id="CommonHeader" type="CommonHeader" />
           <WidgetPlaceholder id="HomeBanner" type="HomeBanner" />
           <WidgetPlaceholder id="AnimationHelpers" type="AnimationHelpers" />
           <WidgetPlaceholder id="HomeServices" type="HomeServices" />
