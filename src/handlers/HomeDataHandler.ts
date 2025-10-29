@@ -2850,7 +2850,14 @@ export const getHomePageData = async () => {
       ...commonContents?.options ?? {},
       quickLinks: commonContents?.menus?.["footer-quick-links-menu"] ?? [],
       menu1: commonContents?.menus?.["footer-service-menu1"] ?? [],
-    }
+    },
+    AppHead: {
+      ...homeContents?.rankMath?.assessor?.serpData ?? {},
+      modifiedDate: homeContents?.modified ?? "",
+      publishedDate: homeContents?.date ?? "",
+      siteFavIcon: homeContents?.rankMath?.siteFavIcon ?? "",
+      parentDomain: homeContents?.rankMath?.parentDomain ?? "",
+    },
   };
 };
 

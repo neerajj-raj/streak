@@ -8,6 +8,10 @@
       "rootLayout": "HomeLayout",
       "widgets": [
         {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
           "id": "CommonHeader",
           "type": "CommonHeader"
         },
@@ -52,6 +56,11 @@
         {
           "id": "CommonFooter",
           "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AnalyticsHelpers",
+          "type": "AnalyticsHelpers",
           "loadingStrategy": "lazy"
         }
       ],
