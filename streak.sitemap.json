@@ -1,0 +1,57 @@
+[
+  {
+    "url": "/",
+    "renderConfig": {
+      "renderId": "homeRenderId",
+      "metadata": {},
+      "dataHandler": "HomeDataHandler",
+      "rootLayout": "HomeLayout",
+      "widgets": [
+        {
+          "id": "HomeBanner",
+          "type": "HomeBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "HomeServices",
+          "type": "HomeServices",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeGallery",
+          "type": "HomeGallery",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeWhyChooseUs",
+          "type": "HomeWhyChooseUs",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeAbout",
+          "type": "HomeAbout",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeTeam",
+          "type": "HomeTeam",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeArticles",
+          "type": "HomeArticles",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  }
+]
