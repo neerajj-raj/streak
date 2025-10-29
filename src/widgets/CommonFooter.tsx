@@ -40,7 +40,7 @@ const CommonFooter = (props: CommonFooterProps) => {
 
   return (
     <>
-      <div className="footer">
+      <div className="footer" role="footer">
         <div className="first-footer">
           <div className="container">
             <div className="first-footer-sec">

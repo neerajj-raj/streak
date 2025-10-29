@@ -28,7 +28,7 @@ const HomeWhyChooseUs = (props: HomeWhyChooseUsProps) => {
   const { why_choose_us_block, review_block } = props?.data?.why_choose_us__and_review_section || {};
 
   return (
-    <div className="review-bg bg-blue">
+    <div className="review-bg bg-blue" role="WhyChooseUs">
       <div className="why-choose">
         <div className="container">
           <div className="space-flex">
@@ -81,17 +81,6 @@ const HomeWhyChooseUs = (props: HomeWhyChooseUsProps) => {
             </div>
           </div>
         </div>}
-      {/* <Script id="HomeWhyChooseUs">
-        {(gDom: any) => {
-          gDom
-            .loadPackage("js/aos.js")
-            .then(() => {
-              const AOS = (gDom as any).AOS;
-              AOS.init({ duration: 1000, once: false });
-              setTimeout(() => AOS.refresh(), 100); // allow DOM to render first
-            })
-        }}
-      </Script> */}
     </div>
   )
 }

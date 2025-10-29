@@ -17,7 +17,7 @@ const HomeBanner = (props: HomeBannerProps) => {
   const [banner1] = bannerSliders;
 
   return (
-    <div className="banner">
+    <div className="banner" role="Banner">
       <div className="carousel">
         <div
           className="carousel-cell is-selected"
@@ -38,11 +38,11 @@ const HomeBanner = (props: HomeBannerProps) => {
             <p></p>
             <div className="btn-flex">
               {banner1?.button_name_1 &&
-                <a href={banner1?.button_link_1} className="btn blue">
+                <a href={banner1?.button_link_1} className="btn blue" aria-label="contact-us">
                   {banner1?.button_name_1}
                 </a>}
               {banner1?.button_name_2 &&
-                <a href={banner1?.button_link_2} className="btn orange">
+                <a href={banner1?.button_link_2} className="btn orange" aria-label="about-us">
                   {banner1?.button_name_2}
                 </a>}
             </div>

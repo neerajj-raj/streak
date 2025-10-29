@@ -13,7 +13,7 @@ interface HomeAboutProps {
 const HomeAbout = (props: HomeAboutProps) => {
   const { main_heading, content, timeline_block } = props?.data || {};
   return (
-    <div className="about-sec">
+    <div className="about-sec" role="about us">
       <div className="small-container">
         <h3 data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100" className="aos-init">{main_heading}</h3>
         <p data-aos="fade-in" data-aos-duration="1000" data-aos-delay="200" className="aos-init" dangerouslySetInnerHTML={{ __html: content }} />

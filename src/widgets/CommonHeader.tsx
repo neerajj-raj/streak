@@ -53,7 +53,7 @@ const CommonHeader = (props: CommonHeaderProps) => {
 
 
   return (
-    <div className="header" id="header-root">
+    <div className="header" id="header-root" role="header">
       <div className="second-header">
         <div className="container flex">
           <header>
