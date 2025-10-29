@@ -16,7 +16,7 @@ const HomeArticles = (props: HomeArticlesProps) => {
   const { main_heading, blogs } = props?.data || {};
 
   return blogs?.length > 0 && (
-    <div className="white-box" role="blogs">
+    <div className="white-box" role="presentation">
       <div className="container">
         <h2 data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100" className="aos-init">{main_heading}</h2>
         <div className="white-box-sec flex">

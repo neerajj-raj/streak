@@ -18,7 +18,7 @@ const HomeTeam = (props: HomeTeamProps) => {
   const { button_name, button_link, team_section } = props?.data || {};
 
   return team_section?.team_members_details?.length > 0 && (
-    <div className="team-sec" role="team">
+    <div className="team-sec" role="presentation">
       <div
         id="HomeTeamId"
         className="carousel"

@@ -15,7 +15,7 @@ const HomeGallery = (props: HomeGalleryProps) => {
   const { main_heading, gallery_slider, button_name, button_link } = props?.data || {};
 
   return gallery_slider?.length > 0 && (
-    <section role="Gallery">
+    <section role="presentation">
       <div className="container">
         <h2
           data-aos="fade-in"

@@ -18,7 +18,7 @@ const HomeServices = (props: HomeServicesProps) => {
   const { main_heading, services } = props?.data || {};
 
   return services?.length > 0 && (
-    <div className="service" id="service" role="Services">
+    <div className="service" id="service" role="presentation">
       <div className="container">
         <div className="content-text">
           <h2>{main_heading ?? ""}</h2>

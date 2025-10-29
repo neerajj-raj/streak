@@ -28,7 +28,7 @@ const HomeWhyChooseUs = (props: HomeWhyChooseUsProps) => {
   const { why_choose_us_block, review_block } = props?.data?.why_choose_us__and_review_section || {};
 
   return (
-    <div className="review-bg bg-blue" role="WhyChooseUs">
+    <div className="review-bg bg-blue" role="presentation">
       <div className="why-choose">
         <div className="container">
           <div className="space-flex">
