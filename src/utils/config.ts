@@ -3,8 +3,10 @@ const fbDomainVerificationId = process?.env?.FB_DOMAIN_VERIFICATION_ID ?? "";
 const gtmId = process?.env?.GTM_ID ?? "";
 const fbPixelId = process?.env?.FB_PIXEL_ID ?? "";
 const gtagId = process?.env?.GT_TAG_ID ?? "";
+const mockEnabled = true;
 
 export {
+  mockEnabled,
   gtagId,
   gtmId,
   wpBaseUrl,

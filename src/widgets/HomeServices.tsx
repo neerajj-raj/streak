@@ -1,5 +1,3 @@
-import { Script } from "streak/components";
-
 interface HomeServicesProps {
   data: {
     services: Array<{
@@ -42,16 +40,6 @@ const HomeServices = (props: HomeServicesProps) => {
           }
         </div>
       </div>
-      {/* <Script id="HomeServices">
-        {(gDom: any) => {
-          gDom
-            .loadPackage("js/aos.js")
-            .then(() => {
-              const AOS = (gDom as any).AOS;
-              AOS.init({ duration: 1000, once: false });
-            })
-        }}
-      </Script> */}
     </div>
   )
 }

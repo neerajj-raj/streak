@@ -1,4 +1,4 @@
-import { Dynamic, Script } from "streak/components";
+import { Script } from "streak/components";
 
 interface HomeGalleryProps {
   data: {

@@ -1,5 +1,3 @@
-import { Script } from "streak/components";
-
 interface HomeWhyChooseUsProps {
   data: {
     why_choose_us__and_review_section: {
