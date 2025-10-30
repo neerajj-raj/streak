@@ -51,7 +51,8 @@ const CommonFooter = (props: CommonFooterProps) => {
                 <a href={footer_appointment_block?.button_link} className="btn blue">
                   {footer_appointment_block?.button_name}
                 </a>
-                <a href={`tel:${footer_appointment_block?.phone_number}`} className="btn orange">
+                {/* #8A4600 For LH Accessibility */}
+                <a href={`tel:${footer_appointment_block?.phone_number}`} className="btn orange" style={{ backgroundColor: "#8A4600" }}>
                   Call Us {footer_appointment_block?.phone_number}
                 </a>
               </div>

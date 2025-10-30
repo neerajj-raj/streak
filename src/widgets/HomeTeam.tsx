@@ -39,7 +39,8 @@ const HomeTeam = (props: HomeTeamProps) => {
         <div className="ft-wrap">
           <div className="medium-container">
             <div className="footer-btn">
-              <a href={button_link} className="btn">{button_name}</a>
+              {/* #8A4600 For LH Accessibility */}
+              <a href={button_link} className="btn" style={{ backgroundColor: "#8A4600" }}>{button_name}</a>
             </div>
           </div>
         </div>}

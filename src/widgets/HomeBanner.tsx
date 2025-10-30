@@ -42,7 +42,8 @@ const HomeBanner = (props: HomeBannerProps) => {
                   {banner1?.button_name_1}
                 </a>}
               {banner1?.button_name_2 &&
-                <a href={banner1?.button_link_2} className="btn orange" aria-label="about-us">
+                // #8A4600 For LH Accessibility
+                <a href={banner1?.button_link_2} className="btn orange" aria-label="about-us" style={{ backgroundColor: "#8A4600" }}>
                   {banner1?.button_name_2}
                   {/* For SEO */}
                   <span style={{ position: "absolute", width: "1px", height: "1px", padding: 0, margin: "-1px", overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap", border: 0, }}>
