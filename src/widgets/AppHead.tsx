@@ -285,14 +285,7 @@ const AppHead = (props: AppHeadProps) => {
       <link rel="stylesheet" href="/styles/mobile.css" />
       {/* <link rel="stylesheet" href="/styles/flickity.css" /> */}
 
-      {/* GTM Insight Tag */}
-      {gtmId && loadGtmScript()}
 
-      {/* FB Meta Tag */}
-      {fbPixelId && loadFbPixelScript()}
-
-      {/* GT Meta Tag */}
-      {gtagId && loadGtScript()}
 
       {/* JSON-LD Schema */}
       {loadStructuredSchema()}
