@@ -1,3 +1,5 @@
+import { Preload } from "streak/components";
+
 interface HomeBannerProps {
   data: {
     banner_slider: Array<{
@@ -19,6 +21,7 @@ const HomeBanner = (props: HomeBannerProps) => {
   return (
     <div className="banner" role="Banner">
       <div className="carousel">
+         <Preload src={"/images/banner-home.webp"} as="image" />
         <div
           className="carousel-cell is-selected"
           style={{
