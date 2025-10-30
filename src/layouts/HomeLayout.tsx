@@ -9,9 +9,9 @@ const HomeLayout = () => {
       </head>
       <body className="home">
         <main className="outer" role="main">
-          <WidgetPlaceholder id="CommonHeader" type="CommonHeader" />
-          {/* <WidgetPlaceholder id="HomeBanner" type="HomeBanner" /> */}
-          <WidgetPlaceholder id="HomeServices" type="HomeServices" />
+          {/* <WidgetPlaceholder id="CommonHeader" type="CommonHeader" /> */}
+          <WidgetPlaceholder id="HomeBanner" type="HomeBanner" />
+          {/* <WidgetPlaceholder id="HomeServices" type="HomeServices" /> */}
           {/* <WidgetPlaceholder id="HomeGallery" type="HomeGallery" />
           <WidgetPlaceholder id="HomeWhyChooseUs" type="HomeWhyChooseUs" />
           <WidgetPlaceholder id="HomeAbout" type="HomeAbout" />
