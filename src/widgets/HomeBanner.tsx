@@ -18,7 +18,7 @@ const HomeBanner = (props: HomeBannerProps) => {
   const [banner1] = props?.data?.banner_slider || [];
 
   return banner1 && (
-    <div className="banner" role="Banner">
+    <div className="banner" role="banner">
       <div className="carousel">
         <Preload src={banner1?.banner_image} as="image" />
         <div
