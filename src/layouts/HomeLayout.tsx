@@ -9,7 +9,7 @@ const HomeLayout = () => {
       </head>
       <body className="home">
         <main className="outer" role="main">
-          <WidgetPlaceholder id="CommonHeader" type="CommonHeader" />
+          {/* <WidgetPlaceholder id="CommonHeader" type="CommonHeader" /> */}
           <WidgetPlaceholder id="HomeBanner" type="HomeBanner" />
           {/* <WidgetPlaceholder id="AnimationHelpers" type="AnimationHelpers" />
           <WidgetPlaceholder id="HomeServices" type="HomeServices" />
