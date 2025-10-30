@@ -23,7 +23,7 @@ const HomeBanner = (props: HomeBannerProps) => {
           className="carousel-cell is-selected"
           style={{
             // background: `url('${banner1?.banner_image}') center bottom / cover no-repeat`,
-            // background: `url('/images/banner-home.webp') center bottom / cover no-repeat`,
+            background: `url('/images/banner-home.webp') center bottom / cover no-repeat`,
             // position: "absolute",
             left: "0px",
             transform: "translateX(0%)",
