@@ -42,8 +42,11 @@ const HomeBanner = (props: HomeBannerProps) => {
                   {banner1?.button_name_1}
                 </a>}
               {banner1?.button_name_2 &&
-                <a href={banner1?.button_link_2} className="btn orange" aria-label="Learn more about our company">
+                <a href={banner1?.button_link_2} className="btn orange" aria-label="about-us">
                   {banner1?.button_name_2}
+                  <span style={{ position: "absolute", width: "1px", height: "1px", padding: 0, margin: "-1px", overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap", border: 0, }}>
+                    about our company
+                  </span>
                 </a>}
             </div>
           </div>
