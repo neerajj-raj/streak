@@ -47,11 +47,11 @@ const AnalyticsHelpers = () => {
             }
           };
 
-          if (gDom.ftr) {
-            setTimeout(performanceImpactScripts, 4000);
-          } else {
-            performanceImpactScripts();
-          }
+          // if (gDom.ftr) {
+          //   setTimeout(performanceImpactScripts, 4000);
+          // } else {
+          //   performanceImpactScripts();
+          // }
         }}
       </Script>
     </div>
