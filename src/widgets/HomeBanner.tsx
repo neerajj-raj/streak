@@ -15,10 +15,9 @@ interface HomeBannerProps {
 }
 
 const HomeBanner = (props: HomeBannerProps) => {
-  const bannerSliders = props?.data?.banner_slider || {};
-  const [banner1] = bannerSliders;
+  const [banner1] = props?.data?.banner_slider || [];
 
-  return (
+  return banner1 && (
     <div className="banner" role="Banner">
       <div className="carousel">
         <Preload src={"/images/banner-home.webp"} as="image" />
