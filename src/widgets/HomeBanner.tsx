@@ -39,11 +39,11 @@ const HomeBanner = (props: HomeBannerProps) => {
             <div className="btn-flex">
               {banner1?.button_name_1 &&
                 <a href={banner1?.button_link_1} className="btn blue" aria-label="contact-us">
-                  <span>{banner1?.button_name_1}</span>
+                  {banner1?.button_name_1}
                 </a>}
               {banner1?.button_name_2 &&
-                <a href={banner1?.button_link_2} className="btn orange" aria-label="about-us">
-                  <span>{banner1?.button_name_2}</span>
+                <a href={banner1?.button_link_2} className="btn orange" aria-label="Learn more about our company">
+                  {banner1?.button_name_2}
                 </a>}
             </div>
           </div>
