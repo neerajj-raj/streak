@@ -40,11 +40,11 @@ const AnimationHelpers = () => {
             // );
           }
 
-          // if (gDom.ftr) {
-          //   setTimeout(loadingCommonPackages, 2000);
-          // } else {
-          //   loadingCommonPackages();
-          // }
+          if (gDom.ftr) {
+            setTimeout(loadingCommonPackages, 2000);
+          } else {
+            loadingCommonPackages();
+          }
         }}
       </Script>
     </>
