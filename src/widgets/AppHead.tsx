@@ -278,12 +278,12 @@ const AppHead = (props: AppHeadProps) => {
       <title>{title}</title>
 
       {/* CSS */}
+      <link rel="stylesheet" href="/styles/fonts.css" />
       <link rel="stylesheet" href="/styles/aos.css" />
       <link rel="stylesheet" href="/styles/global.css" />
       <link rel="stylesheet" href="/styles/menu.css" />
       <link rel="stylesheet" href="/styles/mobile.css" />
       <link rel="stylesheet" href="/styles/flickity.css" />
-      <link rel="stylesheet" href="/styles/fonts.css" />
 
       {/* GTM Insight Tag */}
       {gtmId && loadGtmScript()}
