@@ -21,7 +21,7 @@ const HomeBanner = (props: HomeBannerProps) => {
   return (
     <div className="banner" role="Banner">
       <div className="carousel">
-        <Preload src={"/images/banner-home.webp"} as="image" />
+        <Preload src={banner1?.banner_image} as="image" />
         <div
           className="carousel-cell"
           style={{
