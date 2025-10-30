@@ -279,7 +279,7 @@ const AppHead = (props: AppHeadProps) => {
 
       {/* CSS */}
       <link rel="stylesheet" href="/styles/fonts.css" />
-      <link rel="stylesheet" href="/styles/aos.css" />
+      {/* <link rel="stylesheet" href="/styles/aos.css" /> */}
       <link rel="stylesheet" href="/styles/global.css" />
       <link rel="stylesheet" href="/styles/menu.css" />
       <link rel="stylesheet" href="/styles/mobile.css" />
