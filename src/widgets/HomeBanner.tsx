@@ -20,12 +20,11 @@ const HomeBanner = (props: HomeBannerProps) => {
   return banner1 && (
     <div className="banner" role="Banner">
       <div className="carousel">
-        <Preload src={"/images/banner-home.webp"} as="image" />
+        <Preload src={banner1?.banner_image} as="image" />
         <div
           className="carousel-cell"
           style={{
-            // background: `url('${banner1?.banner_image}') center bottom / cover no-repeat`,
-            background: `url('/images/banner-home.webp') center bottom / cover no-repeat`,
+            background: `url('${banner1?.banner_image}') center bottom / cover no-repeat`,
             // position: "absolute",
             left: "0px",
             transform: "translateX(0%)",
@@ -35,8 +34,7 @@ const HomeBanner = (props: HomeBannerProps) => {
         >
           {/* Hidden LCP discovery */}
           <img
-            // src={banner1?.banner_image}
-            src={"/images/banner-home.webp"}
+            src={banner1?.banner_image}
             alt="banner"
             loading="eager"
             fetchPriority="high"

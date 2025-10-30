@@ -284,8 +284,8 @@ const mockHomeContents = [
     "guid": {
       "rendered": "http://loremwellnesscare.com/?page_id=12"
     },
-    "modified": "2025-01-30T13:39:13",
-    "modified_gmt": "2025-01-30T13:39:13",
+    "modified": "2025-10-30T06:55:59",
+    "modified_gmt": "2025-10-30T06:55:59",
     "slug": "home",
     "status": "publish",
     "type": "page",
@@ -324,21 +324,12 @@ const mockHomeContents = [
       "banner_section": {
         "banner_slider": [
           {
-            "banner_image": "https://loremwellnesscare.com/wp-content/uploads/2025/01/banner-home.jpg",
+            "banner_image": "https://loremwellnesscare.com/wp-content/uploads/2025/10/banner-home.webp",
             "banner_heading": "Helping Your Child Find Ability to Talk Through Speech Therapy",
             "banner_content": "<p>From Frustration to Flourishing: Let Us Help Your Child Communicate Better.</p>\n",
             "button_name_1": "Book an Appointment",
             "button_link_1": "/contact-us/",
             "button_name_2": "Learn More",
-            "button_link_2": "/about-us/"
-          },
-          {
-            "banner_image": "/images/banner-home.webp",
-            "banner_heading": "Helping Your Child To Find Therapy",
-            "banner_content": "<p>Let Us Help Your Child Communicate Better.</p>\n",
-            "button_name_1": "Contact",
-            "button_link_1": "/contact-us/",
-            "button_name_2": "About",
             "button_link_2": "/about-us/"
           }
         ]
@@ -1659,7 +1650,7 @@ const mockHomeContents = [
       "customPermalinks": true,
       "isUserRegistered": false,
       "autoSuggestKeywords": false,
-      "connectSiteUrl": "https://rankmath.com/auth?site=https%3A%2F%2Floremwellnesscare.com&r=https%3A%2F%2Floremwellnesscare.com%2Fwp-json%2Fwp%2Fv2%2Fpages%3Fslug%3Dhome%26nonce%3D516e9ccf58",
+      "connectSiteUrl": "https://rankmath.com/auth?site=https%3A%2F%2Floremwellnesscare.com&r=https%3A%2F%2Floremwellnesscare.com%2Fwp-json%2Fwp%2Fv2%2Fpages%3Fslug%3Dhome%26nonce%3D1ef0186b4b",
       "maxTags": 5,
       "trendsIcon": "<svg viewBox=\"0 0 610 610\"><path d=\"M18.85,446,174.32,290.48l58.08,58.08L76.93,504a14.54,14.54,0,0,1-20.55,0L18.83,466.48a14.54,14.54,0,0,1,0-20.55Z\" style=\"fill:#4285f4\"/><path d=\"M242.65,242.66,377.59,377.6l-47.75,47.75a14.54,14.54,0,0,1-20.55,0L174.37,290.43l47.75-47.75A14.52,14.52,0,0,1,242.65,242.66Z\" style=\"fill:#ea4335\"/><polygon points=\"319.53 319.53 479.26 159.8 537.34 217.88 377.61 377.62 319.53 319.53\" style=\"fill:#fabb05\"/><path d=\"M594.26,262.73V118.61h0a16.94,16.94,0,0,0-16.94-16.94H433.2a16.94,16.94,0,0,0-12,28.92L565.34,274.71h0a16.94,16.94,0,0,0,28.92-12Z\" style=\"fill:#34a853\"/><rect width=\"610\" height=\"610\" style=\"fill:none\"/></svg>",
       "showScore": true,
@@ -2833,6 +2824,70 @@ const mockHomeContents = [
       "tocTitle": "Table of Contents",
       "tocExcludeHeadings": [],
       "listStyle": "ul"
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://loremwellnesscare.com/wp-json/wp/v2/pages/12",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://loremwellnesscare.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://loremwellnesscare.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://loremwellnesscare.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://loremwellnesscare.com/wp-json/wp/v2/comments?post=12"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 26,
+          "href": "https://loremwellnesscare.com/wp-json/wp/v2/pages/12/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 635,
+          "href": "https://loremwellnesscare.com/wp-json/wp/v2/pages/12/revisions/635"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://loremwellnesscare.com/wp-json/wp/v2/media/431"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://loremwellnesscare.com/wp-json/wp/v2/media?parent=12"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
     }
   }
 ];
