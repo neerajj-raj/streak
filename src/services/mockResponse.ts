@@ -331,6 +331,15 @@ const mockHomeContents = [
             "button_link_1": "/contact-us/",
             "button_name_2": "Learn More",
             "button_link_2": "/about-us/"
+          },
+          {
+            "banner_image": "/images/banner-home.webp",
+            "banner_heading": "Helping Your Child To Find Therapy",
+            "banner_content": "<p>Let Us Help Your Child Communicate Better.</p>\n",
+            "button_name_1": "Contact",
+            "button_link_1": "/contact-us/",
+            "button_name_2": "About",
+            "button_link_2": "/about-us/"
           }
         ]
       },

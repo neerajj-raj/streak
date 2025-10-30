@@ -8,7 +8,7 @@ const AnimationHelpers = () => {
 
           const loadingCommonPackages = () => {
 
-            gDom.triggeredEvents = {};
+            // gDom.triggeredEvents = {};
             // let isUserIntracted = false;
 
             // const triggerCustomEvent = (name: string, detail: any = {}) => {

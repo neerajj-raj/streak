@@ -12,13 +12,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "streak": "streak-1.1.52.tgz",
-    "tailwind-merge": "^2.5.5"
+    "streak": "streak-1.1.52.tgz"
   },
   "devDependencies": {
-    "bun": "^1.2.21",
-    "tailwindcss": "^3.4.17"
+    "bun": "^1.2.21"
   }
 }
