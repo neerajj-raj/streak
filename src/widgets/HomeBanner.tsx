@@ -25,8 +25,8 @@ const HomeBanner = (props: HomeBannerProps) => {
         <div
           className="carousel-cell"
           style={{
-            // background: `url('${banner1?.banner_image}') center bottom / cover no-repeat`,
-            background: `url('/images/banner-home.webp') center bottom / cover no-repeat`,
+            background: `url('${banner1?.banner_image}') center bottom / cover no-repeat`,
+            // background: `url('/images/banner-home.webp') center bottom / cover no-repeat`,
             // position: "absolute",
             left: "0px",
             transform: "translateX(0%)",
@@ -36,8 +36,8 @@ const HomeBanner = (props: HomeBannerProps) => {
         >
           {/* Hidden LCP discovery */}
           <img
-            src="/images/banner-home.webp"
-            alt=""
+            src={banner1?.banner_image}
+            alt="banner"
             loading="eager"
             fetchPriority="high"
             width="1"
