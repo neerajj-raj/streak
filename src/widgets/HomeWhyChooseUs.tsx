@@ -35,8 +35,12 @@ const HomeWhyChooseUs = (props: HomeWhyChooseUsProps) => {
             <div className="content-text">
               <h2>{why_choose_us_block?.main_heading}</h2>
             </div>
-            <div className="right-link">
-              <a href={why_choose_us_block?.button_link} className="line-btn">{why_choose_us_block?.button_name}</a>
+            <div className="special-section">
+              <div className="right-link">
+                <a href={why_choose_us_block?.button_link} className="line-btn">
+                  {why_choose_us_block?.button_name}
+                </a>
+              </div>
             </div>
           </div>
           <div className="why-choose-box flex">
