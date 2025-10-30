@@ -283,7 +283,7 @@ const AppHead = (props: AppHeadProps) => {
       <link rel="stylesheet" href="/styles/menu.css" />
       <link rel="stylesheet" href="/styles/mobile.css" />
       <link rel="stylesheet" href="/styles/flickity.css" />
-      {/* <link rel="stylesheet" href="/styles/fonts.css" /> */}
+      <link rel="stylesheet" href="/styles/fonts.css" />
 
       {/* GTM Insight Tag */}
       {gtmId && loadGtmScript()}
