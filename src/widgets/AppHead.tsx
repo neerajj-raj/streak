@@ -95,7 +95,7 @@ const AppHead = (props: AppHeadProps) => {
   );
 
   const loadGtScript = () => (
-    <Script id="gt-tag" options={{ gtagId, parentDomain }}>
+    <Script id="gt-tag" options={{ gtagId, parentDomain  }}>
       {(gDom: any, options: any) => {
         // Initialize dataLayer
         gDom.dataLayer = gDom.dataLayer || [];
@@ -276,23 +276,6 @@ const AppHead = (props: AppHeadProps) => {
       <meta name="description" content={description} />
       <meta name="author" content={authorName} />
       <title>{title}</title>
-
-
-      <link
-        rel="preload"
-        href="/fonts/QGYvz_MVcBeNP4NJuktqUYLkn8BJ.woff2"
-        as="font"
-        type="font/woff2"
-        crossorigin
-      />
-
-      <link
-        rel="preload"
-        href="/fonts/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2"
-        as="font"
-        type="font/woff2"
-        crossorigin
-      />
 
       {/* CSS */}
       <link rel="stylesheet" href="/styles/fonts.css" />
