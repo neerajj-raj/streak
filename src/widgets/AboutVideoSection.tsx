@@ -1,3 +1,5 @@
+import { Script } from "streak/components";
+
 interface AboutVideoSectionProps {
   data: {
     video_poster_image: string;
@@ -21,7 +23,7 @@ const AboutVideoSection = (props: AboutVideoSectionProps) => {
       <div className="why-choose">
         <div className="medium-container">
           <div className="video-container">
-            <video id="video" poster={video_poster_image}>
+            <video id="about-video" poster={video_poster_image} muted>
               <source src={video} type="video/mp4" />
             </video>
             <div className="play-button-wrapper">
@@ -57,6 +59,23 @@ const AboutVideoSection = (props: AboutVideoSectionProps) => {
           </div>
         </div>
       </div>
+      <Script id="AboutVideoSection">
+        {() => {
+          const circlePlayButton = document.getElementById("circle-play-b") as HTMLDivElement;
+          const video = document.getElementById("about-video") as HTMLVideoElement;
+
+          circlePlayButton.addEventListener("click", (e) => {
+            e?.preventDefault();
+            if (circlePlayButton?.style?.opacity === "1") {
+              circlePlayButton.style.opacity = "0";
+              video?.play();
+            } else {
+              video?.pause();
+              circlePlayButton.style.opacity = "1";
+            }
+          });
+        }}
+      </Script>
     </div>
   );
 }
