@@ -14,16 +14,8 @@ const AboutBanner = (props: AboutBannerProps) => {
   const { banner_image, banner_heading, banner_content, banner_button, banner_button_link } = props?.data || {};
 
   return (
-    <div className="banner" role="banner" style={{ overflow: "hidden" }}>
-      <Preload src={"/images/office-1.webp"} as="image" />
-      <img
-        // src={banner_image}
-        src={"/images/office-1.webp"}
-        alt="banner background"
-        loading="eager"
-        fetchPriority="high"
-        className="banner-bg"
-      />
+    <div className="banner" role="banner" style={{ background: `url('${banner_image}') no-repeat center center/cover;` }}>
+      <Preload src={banner_image} as="image" />
       <div className="banner-text">
         {banner_heading && <h1>{banner_heading}</h1>}
         <p></p>

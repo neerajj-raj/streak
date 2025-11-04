@@ -23,7 +23,7 @@ const AboutVideoSection = (props: AboutVideoSectionProps) => {
       <div className="why-choose">
         <div className="medium-container">
           <div className="video-container">
-            <video id="about-video" poster={video_poster_image} muted>
+            <video id="about-video" poster={video_poster_image} muted >
               <source src={video} type="video/mp4" />
             </video>
             <div className="play-button-wrapper">
