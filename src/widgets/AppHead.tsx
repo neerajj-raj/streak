@@ -7,7 +7,6 @@ interface AppHeadProps {
     title: string;
     description: string;
     authorName: string;
-    permalinkFormat: string;
     facebookTitle: string;
     facebookDescription: string;
     focusKeywords: string;
@@ -19,6 +18,7 @@ interface AppHeadProps {
     twitterImage: string;
     siteFavIcon: string;
     parentDomain: string;
+    pageUrl: string;
   }
 }
 
@@ -27,7 +27,7 @@ const AppHead = (props: AppHeadProps) => {
     title,
     description,
     authorName,
-    permalinkFormat,
+    pageUrl,
     facebookTitle,
     facebookDescription,
     focusKeywords,
@@ -95,7 +95,7 @@ const AppHead = (props: AppHeadProps) => {
   );
 
   const loadGtScript = () => (
-    <Script id="gt-tag" options={{ gtagId, parentDomain  }}>
+    <Script id="gt-tag" options={{ gtagId, parentDomain }}>
       {(gDom: any, options: any) => {
         // Initialize dataLayer
         gDom.dataLayer = gDom.dataLayer || [];
@@ -159,7 +159,7 @@ const AppHead = (props: AppHeadProps) => {
               "@type": "WebPage",
               "@id": "https://loremwellnesscare.com/#webpage",
               url: "https://loremwellnesscare.com/",
-              name: "Lorem Wellness Care | Comprehensive Child Development and Rehabilitation Services in Kochi",
+              name: title ?? "",
               datePublished: "2024-08-05T09:55:04+00:00",
               dateModified: "2025-01-30T13:39:13+00:00",
               about: { "@id": "https://loremwellnesscare.com/#organization" },
@@ -190,8 +190,7 @@ const AppHead = (props: AppHeadProps) => {
             },
             {
               "@type": "Article",
-              headline:
-                "Lorem Wellness Care | Comprehensive Child Development and Rehabilitation Services in Kochi",
+              headline: title ?? "",
               keywords: "Lorem Wellness Care",
               datePublished: "2024-08-05T09:55:04+00:00",
               dateModified: "2025-01-30T13:39:13+00:00",
@@ -202,9 +201,8 @@ const AppHead = (props: AppHeadProps) => {
               publisher: {
                 "@id": "https://loremwellnesscare.com/#organization",
               },
-              description:
-                "At Lorem Wellness Care in Kochi, we specialize in child development, women's wellness, mental health care, and rehabilitation for orthopedic and neurological conditions. Our multidisciplinary team offers personalized therapies including speech therapy, physiotherapy, occupational therapy, and special education to enhance your well-being.",
-              name: "Lorem Wellness Care | Comprehensive Child Development and Rehabilitation Services in Kochi",
+              description: description ?? "",
+              name: title ?? "",
               "@id": "https://loremwellnesscare.com/#richSnippet",
               isPartOf: { "@id": "https://loremwellnesscare.com/#webpage" },
               image: {
@@ -220,7 +218,7 @@ const AppHead = (props: AppHeadProps) => {
         }),
       }}
     />
-  )
+  );
 
   return (
     <>
@@ -228,14 +226,14 @@ const AppHead = (props: AppHeadProps) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="description" content={description} />
       <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
-      <link rel="canonical" href={permalinkFormat} />
+      <link rel="canonical" href={pageUrl} />
 
       {/* Open Graph Meta Tags */}
       <meta property="og:locale" content="en_US" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={facebookTitle} />
       <meta property="og:description" content={facebookDescription} />
-      <meta property="og:url" content={permalinkFormat} />
+      <meta property="og:url" content={pageUrl} />
       <meta property="og:site_name" content={focusKeywords} />
       <meta property="og:updated_time" content={modifiedDate} />
 
@@ -261,7 +259,7 @@ const AppHead = (props: AppHeadProps) => {
       <meta name="twitter:label2" content="Time to read" />
       <meta name="twitter:data2" content="Less than a minute" />
 
-      <link rel="shortlink" href={permalinkFormat} />
+      <link rel="shortlink" href={pageUrl} />
       <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://loremwellnesscare.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Floremwellnesscare.com%2F" />
       <link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://loremwellnesscare.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Floremwellnesscare.com%2F&amp;format=xml" />
       <meta name="generator" content="Site Kit by Google 1.144.0" />

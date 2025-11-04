@@ -9,17 +9,18 @@ interface HomeServicesProps {
       }
     }>
     main_heading: string;
+    containerClass: string;
   }
 }
 
 const HomeServices = (props: HomeServicesProps) => {
-  const { main_heading, services } = props?.data || {};
+  const { main_heading, services, containerClass } = props?.data || {};
 
   return services?.length > 0 && (
     <div className="service" id="service" role="presentation">
-      <div className="container">
+      <div className={containerClass || "container"}>
         <div className="content-text">
-          <h2>{main_heading ?? ""}</h2>
+          <h2 data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100">{main_heading ?? ""}</h2>
         </div>
         <div className="servcie-grid">
           {

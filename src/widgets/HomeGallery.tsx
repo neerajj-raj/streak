@@ -16,16 +16,17 @@ const HomeGallery = (props: HomeGalleryProps) => {
 
   return gallery_slider?.length > 0 && (
     <section role="presentation">
-      <div className="container">
-        <h2
-          data-aos="fade-in"
-          data-aos-duration="1000"
-          data-aos-delay="100"
-          className="aos-init"
-        >
-          {main_heading}
-        </h2>
-      </div>
+      {main_heading &&
+        <div className="container">
+          <h2
+            data-aos="fade-in"
+            data-aos-duration="1000"
+            data-aos-delay="100"
+            className="aos-init"
+          >
+            {main_heading}
+          </h2>
+        </div>}
 
       <div className="gallery-slider">
         <div

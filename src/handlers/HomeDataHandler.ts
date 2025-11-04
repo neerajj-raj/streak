@@ -31,6 +31,7 @@ export const getHomePageData = async () => {
       publishedDate: homeContents?.date ?? "",
       siteFavIcon: homeContents?.rankMath?.siteFavIcon ?? "",
       parentDomain: homeContents?.rankMath?.parentDomain ?? "",
+      pageUrl: homeContents?.rankMath?.permalinkFormat ?? "",
     },
   };
 };

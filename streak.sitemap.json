@@ -66,5 +66,78 @@
       ],
       "version": "1.0.0"
     }
+  },
+  {
+    "url": "/about-us",
+    "renderConfig": {
+      "renderId": "aboutRenderId",
+      "metadata": {},
+      "dataHandler": "AboutDataHandler",
+      "rootLayout": "AboutLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "AboutBanner",
+          "type": "AboutBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "AboutContent",
+          "type": "AboutContent",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AboutTeam",
+          "type": "AboutTeam",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AboutWhyChooseUs",
+          "type": "AboutWhyChooseUs",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeGallery",
+          "type": "HomeGallery",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AboutVideoSection",
+          "type": "AboutVideoSection",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AboutValues",
+          "type": "AboutValues",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeServices",
+          "type": "HomeServices",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AnalyticsHelpers",
+          "type": "AnalyticsHelpers",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
   }
 ]

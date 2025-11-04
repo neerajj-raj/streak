@@ -1511,7 +1511,7 @@ ol.numbers li {
 .set-sec-block::before {
   content: '';
   position: absolute;
-  background: url(../img/star.png) no-repeat center center/contain;
+  background: url(/images/star.png) no-repeat center center/contain;
   width: 20px;
   height: 20px;
   left: -30px;
