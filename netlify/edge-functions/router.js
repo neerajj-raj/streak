@@ -9,6 +9,8 @@ export default async (request, context) => {
     "/assets/js/asset-worker.js",
     "/about-us/",
     "/about-us",
+    "/blog",
+    "/blog/",
   ]);
 
   const isAsset =
