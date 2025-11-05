@@ -16,7 +16,7 @@ const HomeLayout = () => {
           <WidgetPlaceholder id="HomeGallery" type="HomeGallery" />
           <WidgetPlaceholder id="HomeWhyChooseUs" type="HomeWhyChooseUs" />
           <WidgetPlaceholder id="HomeAbout" type="HomeAbout" />
-          {/* <WidgetPlaceholder id="HomeTeam" type="HomeTeam" /> */}
+          <WidgetPlaceholder id="HomeTeam" type="HomeTeam" />
           <WidgetPlaceholder id="HomeArticles" type="HomeArticles" />
           <WidgetPlaceholder id="CommonFooter" type="CommonFooter" />
           <WidgetPlaceholder id="AnalyticsHelpers" type="AnalyticsHelpers" />
