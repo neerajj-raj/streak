@@ -18,7 +18,7 @@ interface CommonHeaderProps {
 }
 
 const CommonHeader = (props: CommonHeaderProps) => {
-  const { headerPhone, siteLogo, headerMenus, mobile_contact_button, mobile_contact_button_link } = props?.data || {};
+  const { headerPhone, headerMenus, mobile_contact_button, mobile_contact_button_link } = props?.data || {};
 
   const firstLevelItems = headerMenus.filter((item) => item.parent === "0");
 
@@ -59,7 +59,7 @@ const CommonHeader = (props: CommonHeaderProps) => {
           <header>
             <div className="logo">
               <a href="/">
-                <img src={siteLogo} alt="site logo" style={{ height: "41.28px" }} />
+                <img src={"/icons/logo.svg"} alt="site logo" style={{ height: "41.28px" }} />
               </a>
             </div>
             <nav id="header-nav-id">

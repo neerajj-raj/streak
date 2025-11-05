@@ -23,8 +23,7 @@ const HomeBanner = (props: HomeBannerProps) => {
         <Preload src={banner1?.banner_image} as="image" />
         <div className="carousel-cell">
           <img
-            // src={banner1?.banner_image}
-            src="/images/banner-home.webp"
+            src={banner1?.banner_image}
             alt="banner background"
             loading="eager"
             fetchPriority="high"
