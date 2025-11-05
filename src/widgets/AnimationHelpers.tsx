@@ -8,15 +8,15 @@ const AnimationHelpers = () => {
 
           const loadingCommonPackages = () => {
 
-            // gDom.triggeredEvents = {};
-            // let isUserIntracted = false;
+            gDom.triggeredEvents = {};
+            let isUserIntracted = false;
 
-            // const triggerCustomEvent = (name: string, detail: any = {}) => {
-            //   gDom.triggeredEvents[name] = detail;
-            //   detail.triggeredEvents = Object.keys(gDom.triggeredEvents);
-            //   const event = new CustomEvent(name, { detail });
-            //   window.dispatchEvent(event);
-            // };
+            const triggerCustomEvent = (name: string, detail: any = {}) => {
+              gDom.triggeredEvents[name] = detail;
+              detail.triggeredEvents = Object.keys(gDom.triggeredEvents);
+              const event = new CustomEvent(name, { detail });
+              window.dispatchEvent(event);
+            };
       
             gDom
               .loadPackage("js/aos.js")
@@ -26,18 +26,18 @@ const AnimationHelpers = () => {
                 setTimeout(() => AOS.refresh(), 100); // allow DOM to render first
               });
 
-            // const userIntractionHandler = () => {
-            //   if (isUserIntracted) return;
-            //   isUserIntracted = true;
-            //   ["keydown", "mousemove", "touchmove", "touchstart", "wheel"].forEach(e =>
-            //     document?.removeEventListener(e, userIntractionHandler)
-            //   );
-            //   triggerCustomEvent("userIntracted")
-            // };
+            const userIntractionHandler = () => {
+              if (isUserIntracted) return;
+              isUserIntracted = true;
+              ["keydown", "mousemove", "touchmove", "touchstart", "wheel"].forEach(e =>
+                document?.removeEventListener(e, userIntractionHandler)
+              );
+              triggerCustomEvent("userIntracted")
+            };
 
-            // ["keydown", "mousemove", "touchmove", "touchstart", "wheel"].forEach(e =>
-            //   document?.addEventListener(e, userIntractionHandler, { passive: true })
-            // );
+            ["keydown", "mousemove", "touchmove", "touchstart", "wheel"].forEach(e =>
+              document?.addEventListener(e, userIntractionHandler, { passive: true })
+            );
           }
 
           if (gDom.ftr) {
