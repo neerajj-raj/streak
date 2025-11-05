@@ -36,7 +36,13 @@ const HomeGallery = (props: HomeGalleryProps) => {
         >
           {gallery_slider.map((each, index) => (
             <div key={each?.gallery_image} className="carousel-cell">
-              <img src={each?.gallery_image} alt={`gallery-${index}`} loading="lazy" />
+              <img
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2NjYyIvPjwvc3ZnPg=="
+                data-src={each?.gallery_image}
+                alt={`gallery-${index}`}
+                loading="lazy"
+                id="gallery_images"
+              />
             </div>
           ))}
         </div>
@@ -56,12 +62,25 @@ const HomeGallery = (props: HomeGalleryProps) => {
             .then(() => {
               const carousel = document.getElementById('HomeGalleryId');
               const Flickity = (gDom as any).Flickity;
-              new Flickity(carousel, {
-                freeScroll: false,
-                contain: false,
-                wrapAround: true,
-                prevNextButtons: true,
-                pageDots: false
+              const loadDynamicContents = () => {
+                const galleryImages = document.querySelectorAll("#gallery_images");
+                galleryImages?.forEach((each) => {
+                  const image = each as HTMLImageElement;
+                  image.src = image.dataset.src ?? "";
+                });
+
+                new Flickity(carousel, {
+                  freeScroll: false,
+                  contain: false,
+                  wrapAround: true,
+                  prevNextButtons: true,
+                  pageDots: false
+                });
+              }
+
+
+              gDom.addEventListener("userIntracted", () => {
+                loadDynamicContents();
               });
             })
         }}
