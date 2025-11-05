@@ -139,5 +139,43 @@
       ],
       "version": "1.0.0"
     }
+  },
+  {
+    "url": "/blog",
+    "renderConfig": {
+      "renderId": "blogRenderId",
+      "metadata": {},
+      "dataHandler": "BlogDataHandler",
+      "rootLayout": "BlogLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BlogLists",
+          "type": "BlogLists"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AnalyticsHelpers",
+          "type": "AnalyticsHelpers",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
   }
 ]

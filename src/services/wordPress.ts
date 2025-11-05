@@ -29,3 +29,7 @@ export const getCommonContents = async () => {
 export const getPageContentBySlug = async (slug: string) => {
   return await fetchFromWordPress(`/wp-json/wp/v2/pages?slug=${slug}`, slug);
 }
+
+export const getAllBlogs = async () => {
+  return await fetchFromWordPress("/wp-json/custom/v1/all-blogs", "all-blogs");
+}

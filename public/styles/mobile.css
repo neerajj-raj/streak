@@ -608,6 +608,7 @@
 @media screen and (min-width:684px) and (max-width:1024px) {
   body {
     font-size: 85%;
+    background: transparent;
   }
 
 
@@ -672,6 +673,7 @@
 
   .header-btn {
     display: none;
+
   }
 
   .menu-toggle {
@@ -717,7 +719,6 @@
     text-align: center;
     width: 100%;
   }
-
 
   .mobile-only a.btn {
     font-size: 3em;

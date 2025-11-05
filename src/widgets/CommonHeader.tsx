@@ -88,7 +88,6 @@ const CommonHeader = (props: CommonHeaderProps) => {
         {() => {
           const hamburger = document.getElementById("hamburger-1") as HTMLDivElement;
           const navElement = document.getElementById("header-nav-id");
-          const isScrolled = false;
 
           const handleScroll = () => {
             const rootSection = document.getElementById("header-root");
