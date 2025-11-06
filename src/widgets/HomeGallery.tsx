@@ -78,10 +78,11 @@ const HomeGallery = (props: HomeGalleryProps) => {
                 });
               }
 
-
-              gDom.addEventListener("userIntracted", () => {
+              if (gDom?.ftr) {
+                gDom.addEventListener("userIntracted", loadDynamicContents);
+              } else {
                 loadDynamicContents();
-              });
+              }
             })
         }}
       </Script>
