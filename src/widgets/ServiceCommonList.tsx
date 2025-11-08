@@ -36,7 +36,7 @@ const ServiceCommonList = (props: ServiceCommonListProps) => {
         <div className="medium-container">
           <h2>{main_heading ?? ""}</h2>
           <img src={top_full_width_image} alt="service" loading="lazy" />
-          <h4>{top_heading ?? ""}</h4>
+          <h3>{top_heading ?? ""}</h3>
           <div className="point-list">
             <ul className="points">
               {hasArrayElements(top_left_list_block) &&
