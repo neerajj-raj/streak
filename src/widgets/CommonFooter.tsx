@@ -95,7 +95,7 @@ const CommonFooter = (props: CommonFooterProps) => {
                       main_footer?.contact_block?.whatsapp_number && (
                         <li>
                           <a href={`https://wa.me/${main_footer?.contact_block?.whatsapp_number}`} target="_blank">
-                            <img src="icons/whatsapp.svg" alt="whatsapp" loading="lazy" />
+                            <img src="/icons/whatsapp.svg" alt="whatsapp" loading="lazy" />
                           </a>
                         </li>
                       )

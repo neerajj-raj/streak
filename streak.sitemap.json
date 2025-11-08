@@ -68,12 +68,12 @@
     }
   },
   {
-    "url": "/about-us",
+    "url": "/services/best-occupational-therapy-in-kochi",
     "renderConfig": {
-      "renderId": "aboutRenderId",
+      "renderId": "best-occupational-therapy-in-kochi",
       "metadata": {},
-      "dataHandler": "AboutDataHandler",
-      "rootLayout": "AboutLayout",
+      "dataHandler": "ServiceDataHandler",
+      "rootLayout": "ServiceLayout",
       "widgets": [
         {
           "id": "AppHead",
@@ -84,85 +84,42 @@
           "type": "CommonHeader"
         },
         {
-          "id": "AboutBanner",
-          "type": "AboutBanner"
+          "id": "ServiceBanner",
+          "type": "ServiceBanner"
         },
         {
           "id": "AnimationHelpers",
           "type": "AnimationHelpers"
         },
         {
-          "id": "AboutContent",
-          "type": "AboutContent",
+          "id": "ServiceContent",
+          "type": "ServiceContent",
           "loadingStrategy": "lazy"
         },
         {
-          "id": "AboutTeam",
-          "type": "AboutTeam",
+          "id": "ServiceCommonList",
+          "type": "ServiceCommonList",
           "loadingStrategy": "lazy"
         },
         {
-          "id": "AboutWhyChooseUs",
-          "type": "AboutWhyChooseUs",
+          "id": "ServiceWhyChooseUs",
+          "type": "ServiceWhyChooseUs",
           "loadingStrategy": "lazy"
         },
         {
-          "id": "HomeGallery",
-          "type": "HomeGallery",
+          "id": "ServiceDescription",
+          "type": "ServiceDescription",
           "loadingStrategy": "lazy"
         },
         {
-          "id": "AboutVideoSection",
-          "type": "AboutVideoSection",
+          "id": "ServiceDetail",
+          "type": "ServiceDetail",
           "loadingStrategy": "lazy"
         },
         {
-          "id": "AboutValues",
-          "type": "AboutValues",
+          "id": "ServiceFaqSection",
+          "type": "ServiceFaqSection",
           "loadingStrategy": "lazy"
-        },
-        {
-          "id": "HomeServices",
-          "type": "HomeServices",
-          "loadingStrategy": "lazy"
-        },
-        {
-          "id": "CommonFooter",
-          "type": "CommonFooter",
-          "loadingStrategy": "lazy"
-        },
-        {
-          "id": "AnalyticsHelpers",
-          "type": "AnalyticsHelpers",
-          "loadingStrategy": "lazy"
-        }
-      ],
-      "version": "1.0.0"
-    }
-  },
-  {
-    "url": "/blog",
-    "renderConfig": {
-      "renderId": "blogRenderId",
-      "metadata": {},
-      "dataHandler": "BlogDataHandler",
-      "rootLayout": "BlogLayout",
-      "widgets": [
-        {
-          "id": "AppHead",
-          "type": "AppHead"
-        },
-        {
-          "id": "CommonHeader",
-          "type": "CommonHeader"
-        },
-        {
-          "id": "BlogLists",
-          "type": "BlogLists"
-        },
-        {
-          "id": "AnimationHelpers",
-          "type": "AnimationHelpers"
         },
         {
           "id": "CommonFooter",

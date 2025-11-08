@@ -7,10 +7,8 @@ export default async (request, context) => {
   const streakPaths = new Set([
     "/",
     "/assets/js/asset-worker.js",
-    "/about-us/",
-    "/about-us",
-    "/blog",
-    "/blog/",
+    "/services/best-occupational-therapy-in-kochi/",
+    "/services/best-occupational-therapy-in-kochi"
   ]);
 
   const isAsset =

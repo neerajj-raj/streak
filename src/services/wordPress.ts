@@ -33,3 +33,7 @@ export const getPageContentBySlug = async (slug: string) => {
 export const getAllBlogs = async () => {
   return await fetchFromWordPress("/wp-json/custom/v1/all-blogs", "all-blogs");
 }
+
+export const getServiceContentBySlug = async (slug: string) => {
+  return await fetchFromWordPress(`/wp-json/custom/v1/service/${slug}`, slug);
+}
