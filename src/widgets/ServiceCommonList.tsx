@@ -35,7 +35,7 @@ const ServiceCommonList = (props: ServiceCommonListProps) => {
       <div className="why-choose">
         <div className="medium-container">
           <h2>{main_heading ?? ""}</h2>
-          <img src={top_full_width_image} alt="service" />
+          <img src={top_full_width_image} alt="service" loading="lazy" />
           <h4>{top_heading ?? ""}</h4>
           <div className="point-list">
             <ul className="points">
@@ -53,7 +53,7 @@ const ServiceCommonList = (props: ServiceCommonListProps) => {
           </div>
 
           {bottom_full_width_image && (
-            <img src={bottom_full_width_image} alt="service" />
+            <img src={bottom_full_width_image} alt="service" loading="lazy" />
           )}
 
           {bottom_heading && <h4>{bottom_heading}</h4>}

@@ -41,7 +41,7 @@ const ServiceWhyChooseUs = (props: ServiceWhyChooseUsProps) => {
             data-aos-duration="1000"
             data-aos-delay="200"
           >
-            {right_side_image && <img src={right_side_image} alt="service" />}
+            {right_side_image && <img src={right_side_image} alt="service" loading="lazy" />}
           </div>
         </div>
       </div>

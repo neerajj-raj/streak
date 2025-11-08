@@ -13,7 +13,7 @@ const ServiceDetail = (props: ServiceDetailProps) => {
       <div className="review-bg bg-pink service-detail">
         <div className="why-choose">
           <div className="medium-container">
-            {image && <img src={image} alt="service" />}
+            {image && <img src={image} alt="service" loading="lazy" />}
             <h4>{heading}</h4>
             <div
               className="p-l"
