@@ -21,7 +21,8 @@ const ServiceBanner = (props: ServiceBannerProps) => {
          background: `url('/images/play-area.webp') no-repeat center center/cover`,
       }}
     >
-      <Preload src={banner_image} as="image" />
+      {/* <Preload src={banner_image} as="image" /> */}
+      <Preload src={"/images/play-area.webp"} as="image" />
       <div className="banner-text">
         <h1>{banner_heading ?? ""}</h1>
         <p></p>
