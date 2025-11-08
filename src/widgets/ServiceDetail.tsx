@@ -10,7 +10,8 @@ const ServiceDetail = (props: ServiceDetailProps) => {
 
   return (
     heading && (
-      <div className="review-bg bg-pink service-detail">
+      //#A2254E for Accessibility
+      <div className="review-bg bg-pink service-detail" style={{ backgroundColor: "#A2254E" }}>
         <div className="why-choose">
           <div className="medium-container">
             {image && <img src={image} alt="service" loading="lazy" />}

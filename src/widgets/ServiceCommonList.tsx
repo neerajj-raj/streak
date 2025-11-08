@@ -31,7 +31,8 @@ const ServiceCommonList = (props: ServiceCommonListProps) => {
   } = props?.data || {};
 
   return (
-    <div className="review-bg bg-pink service-detail" >
+    //#A2254E for Accessibility
+    <div className="review-bg bg-pink service-detail" style={{ backgroundColor: "#A2254E" }}>
       <div className="why-choose">
         <div className="medium-container">
           <h2>{main_heading ?? ""}</h2>
