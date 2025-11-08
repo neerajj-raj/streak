@@ -17,7 +17,9 @@ const ServiceContent = (props: ServiceContentProps) => {
   return (
     <div
       className="main-content"
-
+      // data-aos="fade-in"
+      // data-aos-duration="1000"
+      // data-aos-delay="100"
     >
       <div className="medium-container">
         <h2 dangerouslySetInnerHTML={{ __html: small_content ?? "" }} />

@@ -1,8 +1,8 @@
 import { getCommonContents, getServiceContentBySlug } from "services/wordPress";
 
-export const getHomePageData = async () => {
+export const getHomePageData = async (props: any) => {  
   const commonContents: any = await getCommonContents();
-  const serviceContent: any = await getServiceContentBySlug("best-occupational-therapy-in-kochi") ?? {};
+  const serviceContent: any = await getServiceContentBySlug(props?.slug) ?? {};
 
   return {
     ServiceBanner: serviceContent?.acf?.banner_section ?? {},

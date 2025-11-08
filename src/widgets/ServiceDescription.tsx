@@ -7,7 +7,7 @@ interface ServiceDescriptionProps {
 
 const ServiceDescription = (props: ServiceDescriptionProps) => {
   const { heading, content } = props?.data || {};
-  
+
   return (
     heading && (
       <div
@@ -17,7 +17,7 @@ const ServiceDescription = (props: ServiceDescriptionProps) => {
         data-aos-delay="100"
       >
         <div className="medium-container">
-          <h3>{heading}</h3>
+          <h3 dangerouslySetInnerHTML={{ __html: heading }} />
           <p></p>
           <span dangerouslySetInnerHTML={{ __html: content ?? "" }} />
           <p></p>

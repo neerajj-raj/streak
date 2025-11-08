@@ -15,7 +15,7 @@ const ServiceDetail = (props: ServiceDetailProps) => {
         <div className="why-choose">
           <div className="medium-container">
             {image && <img src={image} alt="service" loading="lazy" />}
-            <h4>{heading}</h4>
+            <h4 dangerouslySetInnerHTML={{ __html: heading }} />
             <div
               className="p-l"
               dangerouslySetInnerHTML={{ __html: content ?? "" }}

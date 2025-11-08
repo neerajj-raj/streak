@@ -973,6 +973,17 @@ a.line-btn.blue svg {
   padding: 50px 0 10px 0;
 }
 
+/* LH Accessibility */
+.service-detail h3 {
+  font-size: 3em;
+  padding: 50px 0 10px 0;
+  margin: 0;
+  color: var(--maincolor);
+  line-height: 1.1;
+  font-weight: 600;
+  font-family: var(--font-one);
+}
+
 .point-list {
   display: flex;
   column-gap: 100px;
