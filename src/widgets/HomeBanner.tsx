@@ -22,22 +22,7 @@ const HomeBanner = (props: HomeBannerProps) => {
       <div className="carousel">
         <Preload src={banner1?.banner_image} as="image" />
         <div className="carousel-cell">
-          <img
-            src={banner1?.banner_image}
-            alt="banner background"
-            loading="eager"
-            fetchPriority="high"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center bottom",
-              zIndex: 0,
-            }}
-          />
+
           <div className="banner-text">
             {banner1?.banner_heading && <h1>{banner1?.banner_heading}</h1>}
             <p></p>
@@ -59,6 +44,22 @@ const HomeBanner = (props: HomeBannerProps) => {
                 </a>}
             </div>
           </div>
+                    <img
+            src={banner1?.banner_image}
+            alt="banner background"
+            loading="eager"
+            fetchPriority="high"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center bottom",
+              zIndex: 0,
+            }}
+          />
         </div>
       </div>
     </div>
