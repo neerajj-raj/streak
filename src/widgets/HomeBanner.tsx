@@ -20,7 +20,14 @@ const HomeBanner = (props: HomeBannerProps) => {
   return banner1 && (
     <div className="banner" role="banner">
       <div className="carousel">
-        <Preload src={banner1?.banner_image} as="image" />
+        {/* <Preload src={banner1?.banner_image} as="image" /> */}
+         <link
+          rel="preload"
+          as="image"
+          href={banner1?.banner_image}
+          type="image/webp"
+          fetchpriority="high"
+        />
         <div className="carousel-cell">
           <img
             src={banner1?.banner_image}
