@@ -28,7 +28,6 @@ const HomeBanner = (props: HomeBannerProps) => {
             loading="eager"
             fetchPriority="high"
             className="banner-bg"
-            decoding="async"
           />
           <div className="banner-text">
             {banner1?.banner_heading && <h1>{banner1?.banner_heading}</h1>}
