@@ -25,9 +25,9 @@ const HomeBanner = (props: HomeBannerProps) => {
           <img
             src={banner1?.banner_image}
             alt="banner background"
-            loading="eager"
             fetchPriority="high"
             className="banner-bg"
+            style={{opacity: "0.5"}}
           />
           <div className="banner-text">
             {banner1?.banner_heading && <h1>{banner1?.banner_heading}</h1>}
