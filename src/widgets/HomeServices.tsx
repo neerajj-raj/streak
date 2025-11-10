@@ -20,7 +20,8 @@ const HomeServices = (props: HomeServicesProps) => {
     <div className="service" id="service" role="presentation">
       <div className={containerClass || "container"}>
         <div className="content-text">
-          <h2 data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100">{main_heading ?? ""}</h2>
+          {/* <h2 data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100">{main_heading ?? ""}</h2> */}
+          <h2>{main_heading ?? ""}</h2>
         </div>
         <div className="servcie-grid">
           {
