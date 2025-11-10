@@ -20,14 +20,7 @@ const HomeBanner = (props: HomeBannerProps) => {
   return banner1 && (
     <div className="banner" role="banner">
       <div className="carousel">
-        {/* <Preload src={banner1?.banner_image} as="image" /> */}
-         <link
-          rel="preload"
-          as="image"
-          href={banner1?.banner_image}
-          type="image/webp"
-          fetchpriority="high"
-        />
+        <Preload src={banner1?.banner_image} as="image" />
         <div className="carousel-cell">
           <img
             src={banner1?.banner_image}
@@ -35,6 +28,7 @@ const HomeBanner = (props: HomeBannerProps) => {
             loading="eager"
             fetchPriority="high"
             className="banner-bg"
+            decoding="async"
           />
           <div className="banner-text">
             {banner1?.banner_heading && <h1>{banner1?.banner_heading}</h1>}
