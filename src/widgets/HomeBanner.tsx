@@ -27,7 +27,16 @@ const HomeBanner = (props: HomeBannerProps) => {
             alt="banner background"
             loading="eager"
             fetchPriority="high"
-            className="banner-bg"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center bottom",
+              zIndex: 0,
+            }}
           />
           <div className="banner-text">
             {banner1?.banner_heading && <h1>{banner1?.banner_heading}</h1>}
