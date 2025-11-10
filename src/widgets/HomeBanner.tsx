@@ -19,7 +19,7 @@ const HomeBanner = (props: HomeBannerProps) => {
 
   return banner1 && (
     <div className="banner" role="banner">
-      <div className="carousel">
+      <div className="carousel" style={{ backgroundColor: "#000" }}>
         <Preload src={banner1?.banner_image} as="image" />
         <div className="carousel-cell">
           <img
