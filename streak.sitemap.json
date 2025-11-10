@@ -93,8 +93,7 @@
         },
         {
           "id": "ServiceContent",
-          "type": "ServiceContent",
-          "loadingStrategy": "lazy"
+          "type": "ServiceContent"
         },
         {
           "id": "ServiceCommonList",
@@ -161,8 +160,7 @@
         },
         {
           "id": "ServiceContent",
-          "type": "ServiceContent",
-          "loadingStrategy": "lazy"
+          "type": "ServiceContent"
         },
         {
           "id": "ServiceCommonList",
@@ -229,8 +227,7 @@
         },
         {
           "id": "ServiceContent",
-          "type": "ServiceContent",
-          "loadingStrategy": "lazy"
+          "type": "ServiceContent"
         },
         {
           "id": "ServiceCommonList",
