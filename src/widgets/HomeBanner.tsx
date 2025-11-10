@@ -31,7 +31,7 @@ const HomeBanner = (props: HomeBannerProps) => {
             decoding="async"
           />
           <div className="banner-text">
-            {banner1?.banner_heading && <h1>{banner1?.banner_heading}</h1>}
+            {banner1?.banner_heading && <h1 style={{backgroundColor: "#000"}}>{banner1?.banner_heading}</h1>}
             <p></p>
             {banner1?.banner_content && <div dangerouslySetInnerHTML={{ __html: banner1?.banner_content }}></div>}
             <p></p>
