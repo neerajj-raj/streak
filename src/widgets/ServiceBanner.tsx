@@ -17,12 +17,10 @@ const ServiceBanner = (props: ServiceBannerProps) => {
     <div
       className="banner"
       style={{
-        // background: `url('${banner_image}') no-repeat center center/cover`,
-         background: `url('/images/play-area.webp') no-repeat center center/cover`,
+        background: `url('${banner_image}') no-repeat center center/cover`,
       }}
     >
-      {/* <Preload src={banner_image} as="image" /> */}
-      <Preload src={"/images/play-area.webp"} as="image" />
+      <Preload src={banner_image} as="image" />
       <div className="banner-text">
         <h1>{banner_heading ?? ""}</h1>
         <p></p>
