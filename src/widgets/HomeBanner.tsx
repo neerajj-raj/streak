@@ -47,8 +47,6 @@ const HomeBanner = (props: HomeBannerProps) => {
                     <img
             src={banner1?.banner_image}
             alt="banner background"
-            loading="eager"
-            fetchPriority="high"
             style={{
               position: "absolute",
               top: 0,
