@@ -8,7 +8,11 @@ export default async (request, context) => {
     "/",
     "/assets/js/asset-worker.js",
     "/services/best-occupational-therapy-in-kochi",
-    "/services/best-occupational-therapy-in-kochi/"
+    "/services/best-occupational-therapy-in-kochi/",
+    "/services/best-physiotherapy-services-in-kochi",
+    "/services/best-physiotherapy-services-in-kochi/",
+    "/services/best-speech-therapy-center-in-kochi",
+    "/services/best-speech-therapy-center-in-kochi/",
   ]);
 
   const isAsset =
