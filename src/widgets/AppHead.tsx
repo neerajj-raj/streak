@@ -271,7 +271,6 @@ const AppHead = (props: AppHeadProps) => {
 
       {fbDomainVerificationId && <meta name="facebook-domain-verification" content={fbDomainVerificationId} />}
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="description" content={description} />
       <meta name="author" content={authorName} />
       <title>{title}</title>
 
