@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_social_media_url_social_media_urls",
+  "info": {
+    "displayName": "social_media_url"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

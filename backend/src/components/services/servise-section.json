@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_services_servise_sections",
+  "info": {
+    "displayName": "servise_section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "sub_heading": {
+      "type": "string"
+    },
+    "service_card": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service-page.cutting-edge-solutions"
+    }
+  }
+}

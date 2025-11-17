@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_home_page_client_sections",
+  "info": {
+    "displayName": "client_section"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

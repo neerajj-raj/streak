@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_seo_seo_sections",
+  "info": {
+    "displayName": "seo_section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 160
+    },
+    "keywords": {
+      "type": "string"
+    }
+  }
+}

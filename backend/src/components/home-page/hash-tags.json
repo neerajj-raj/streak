@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_home_page_hash_tags",
+  "info": {
+    "displayName": "hash_tags"
+  },
+  "options": {},
+  "attributes": {
+    "tag": {
+      "type": "string"
+    }
+  }
+}

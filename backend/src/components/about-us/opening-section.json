@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_opening_section_opening_sections",
+  "info": {
+    "displayName": "aboutus-card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "no_of_items": {
+      "type": "string"
+    }
+  }
+}

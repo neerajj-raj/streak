@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_about_us_team_cards",
+  "info": {
+    "displayName": "team_card"
+  },
+  "options": {},
+  "attributes": {
+    "full_name": {
+      "type": "string"
+    },
+    "designation": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_aboutus_page_solution_sections",
+  "info": {
+    "displayName": "solution_section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sub_heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "solution_card": {
+      "type": "component",
+      "repeatable": true,
+      "component": "solution-section-aboutus-page.solution-card"
+    },
+    "about_us_card": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about-us.opening-section"
+    }
+  }
+}

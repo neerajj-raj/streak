@@ -1,0 +1,62 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_us_pages",
+  "info": {
+    "singularName": "about-us-page",
+    "pluralName": "about-us-pages",
+    "displayName": "About_us_page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "solution_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "solution-section-aboutus-page.solution-section"
+    },
+    "team_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "team-section.team-section"
+    },
+    "history_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "history-section.histroy-section"
+    },
+    "csr_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "about-us.csr-section"
+    },
+    "award_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "award-section.award-section"
+    },
+    "career_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "career-section.career-section"
+    },
+    "seo_section": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo-section"
+    }
+  }
+}

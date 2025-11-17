@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_opening_section_opening_scetions",
+  "info": {
+    "displayName": "opening_section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

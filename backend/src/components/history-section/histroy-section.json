@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_history_section_histroy_sections",
+  "info": {
+    "displayName": "history_section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "sub_heading": {
+      "type": "string"
+    },
+    "histories": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about-us.histories"
+    }
+  }
+}

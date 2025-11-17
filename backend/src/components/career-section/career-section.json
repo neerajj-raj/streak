@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_career_section_career_sections",
+  "info": {
+    "displayName": "career_section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "openings_sections": {
+      "type": "component",
+      "repeatable": false,
+      "component": "opening-section.opening-scetion"
+    }
+  }
+}

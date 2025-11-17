@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_innovation_section_innovation_sections",
+  "info": {
+    "displayName": "innovation_section"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

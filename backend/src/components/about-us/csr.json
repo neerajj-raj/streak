@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_about_us_csrs",
+  "info": {
+    "displayName": "CSR"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
