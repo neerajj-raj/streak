@@ -1,4 +1,5 @@
 import { getCommonContents, getPageContentBySlug } from "services/wordPress";
+import { siteBaseUrl } from "utils/config";
 
 export const getHomePageData = async () => {
   const commonContents: any = await getCommonContents();
@@ -31,7 +32,7 @@ export const getHomePageData = async () => {
       publishedDate: homeContents?.date ?? "",
       siteFavIcon: homeContents?.rankMath?.siteFavIcon ?? "",
       parentDomain: homeContents?.rankMath?.parentDomain ?? "",
-      pageUrl: homeContents?.rankMath?.permalinkFormat ?? "",
+      pageUrl: siteBaseUrl ?? ""
     },
   };
 };

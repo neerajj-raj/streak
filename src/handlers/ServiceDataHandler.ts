@@ -1,4 +1,5 @@
 import { getCommonContents, getServiceContentBySlug } from "services/wordPress";
+import { siteBaseUrl } from "utils/config";
 
 export const getHomePageData = async (props: any) => {  
   const commonContents: any = await getCommonContents();
@@ -28,7 +29,7 @@ export const getHomePageData = async (props: any) => {
       ...serviceContent?.rankMath ?? {},
       modifiedDate: serviceContent?.modified ?? "",
       publishedDate: serviceContent?.date ?? "",
-      pageUrl: serviceContent?.rankMath?.permalinkFormat ?? "",
+      pageUrl: `${siteBaseUrl}/service/${props?.slug}`
     },
   };
 };

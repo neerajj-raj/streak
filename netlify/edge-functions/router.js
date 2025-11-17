@@ -32,12 +32,12 @@ export default async (request, context) => {
     return context.next();
   }
 
-  // Proxy everything else to Next.js
-  const NEXT_APP_DOMAIN = Deno.env.get("WP_APP_BASE_URL") ?? "";
-  const target = NEXT_APP_DOMAIN + url.pathname + url.search;
+  // Proxy everything else to Wordpress
+  const SUB_DOMAIN = Deno.env.get("SUB_DOMAIN_BASE_URL") ?? "";
+  const target = SUB_DOMAIN + url.pathname + url.search;
   const response = await fetch(target, { headers: request.headers });
 
-  console.log(`➡️ Requested url:"${url.pathname + url.search}" to Next.js app`);
+  console.log(`➡️ Requested url:"${url.pathname + url.search}" to Wordpress app`);
 
   // Return proxied response
   return new Response(response.body, {
