@@ -1,0 +1,20 @@
+{
+  "name": "loremwellnesscare",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "1",
+    "dev": "streak dev",
+    "build": "streak build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "streak": "streak-1.1.52.tgz"
+  },
+  "devDependencies": {
+    "bun": "^1.2.21"
+  }
+}

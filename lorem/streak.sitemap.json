@@ -1,0 +1,274 @@
+[
+  {
+    "url": "/",
+    "renderConfig": {
+      "renderId": "homeRenderId",
+      "metadata": {},
+      "dataHandler": "HomeDataHandler",
+      "rootLayout": "HomeLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "HomeBanner",
+          "type": "HomeBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "HomeServices",
+          "type": "HomeServices",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeGallery",
+          "type": "HomeGallery",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeWhyChooseUs",
+          "type": "HomeWhyChooseUs",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeAbout",
+          "type": "HomeAbout",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeTeam",
+          "type": "HomeTeam",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeArticles",
+          "type": "HomeArticles",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AnalyticsHelpers",
+          "type": "AnalyticsHelpers",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/services/best-occupational-therapy-in-kochi",
+    "renderConfig": {
+      "renderId": "best-occupational-therapy-in-kochi",
+      "metadata": { "slug": "best-occupational-therapy-in-kochi" },
+      "dataHandler": "ServiceDataHandler",
+      "rootLayout": "ServiceLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "ServiceBanner",
+          "type": "ServiceBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "ServiceContent",
+          "type": "ServiceContent",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceCommonList",
+          "type": "ServiceCommonList",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceWhyChooseUs",
+          "type": "ServiceWhyChooseUs",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceDescription",
+          "type": "ServiceDescription",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceDetail",
+          "type": "ServiceDetail",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceFaqSection",
+          "type": "ServiceFaqSection",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AnalyticsHelpers",
+          "type": "AnalyticsHelpers",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/services/best-physiotherapy-services-in-kochi",
+    "renderConfig": {
+      "renderId": "best-physiotherapy-services-in-kochi",
+      "metadata": { "slug": "best-physiotherapy-services-in-kochi" },
+      "dataHandler": "ServiceDataHandler",
+      "rootLayout": "ServiceLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "ServiceBanner",
+          "type": "ServiceBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "ServiceContent",
+          "type": "ServiceContent",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceCommonList",
+          "type": "ServiceCommonList",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceWhyChooseUs",
+          "type": "ServiceWhyChooseUs",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceDescription",
+          "type": "ServiceDescription",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceDetail",
+          "type": "ServiceDetail",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceFaqSection",
+          "type": "ServiceFaqSection",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AnalyticsHelpers",
+          "type": "AnalyticsHelpers",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/services/best-speech-therapy-center-in-kochi",
+    "renderConfig": {
+      "renderId": "best-speech-therapy-center-in-kochi",
+      "metadata": { "slug": "best-speech-therapy-center-in-kochi" },
+      "dataHandler": "ServiceDataHandler",
+      "rootLayout": "ServiceLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "ServiceBanner",
+          "type": "ServiceBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "ServiceContent",
+          "type": "ServiceContent",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceCommonList",
+          "type": "ServiceCommonList",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceWhyChooseUs",
+          "type": "ServiceWhyChooseUs",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceDescription",
+          "type": "ServiceDescription",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceDetail",
+          "type": "ServiceDetail",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "ServiceFaqSection",
+          "type": "ServiceFaqSection",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AnalyticsHelpers",
+          "type": "AnalyticsHelpers",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  }
+]
