@@ -98,27 +98,20 @@ const CommonHeader = (props: CommonHeaderProps) => {
             }
           }
 
-          const handleHamburgerClick = () => {
-            const isNavOpen = hamburger?.getAttribute("isNavOpen") === "true";
-            if (isNavOpen) {
-              hamburger.classList.remove("is-active");
-              navElement?.classList.remove("active");
-              hamburger.setAttribute("isNavOpen", "false");
-            } else {
-              hamburger.classList.add("is-active");
-              navElement?.classList.add("active");
-              hamburger.setAttribute("isNavOpen", "true");
-            }
-          }
-
           const scrollToHash = () => {
             const hash = window?.location?.hash;
             if (hash) {
               const id = hash.replace("#", "");
               const el = document.getElementById(id);
               if (el) {
-                handleHamburgerClick();
                 el.scrollIntoView({ behavior: "smooth" });
+                // For mobile, close the nav after clicking
+                const isNavOpen = hamburger?.getAttribute("isNavOpen") === "true";
+                if (isNavOpen) {
+                  hamburger.classList.remove("is-active");
+                  navElement?.classList.remove("active");
+                  hamburger.setAttribute("isNavOpen", "false");
+                }
               } else {
                 // retry in case element loads later
                 setTimeout(scrollToHash, 50);
@@ -129,7 +122,16 @@ const CommonHeader = (props: CommonHeaderProps) => {
           document.addEventListener("scroll", handleScroll);
 
           hamburger.onclick = () => {
-            handleHamburgerClick();
+            const isNavOpen = hamburger?.getAttribute("isNavOpen") === "true";
+            if (isNavOpen) {
+              hamburger.classList.remove("is-active");
+              navElement?.classList.remove("active");
+              hamburger.setAttribute("isNavOpen", "false");
+            } else {
+              hamburger.classList.add("is-active");
+              navElement?.classList.add("active");
+              hamburger.setAttribute("isNavOpen", "true");
+            }
           }
 
           setTimeout(scrollToHash, 100);
