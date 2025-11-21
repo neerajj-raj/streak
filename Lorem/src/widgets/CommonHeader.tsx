@@ -40,7 +40,7 @@ const CommonHeader = (props: CommonHeaderProps) => {
                 : "menu-item-type-post_type"
                 }`}
             >
-              <a href={item.url}>{item.title}</a>
+              <a href={item.url} className="header_menus">{item.title}</a>
 
               {/* Render sub-menu recursively */}
               {hasChildren && renderMenuItems(children, "sub-menu")}
@@ -105,13 +105,6 @@ const CommonHeader = (props: CommonHeaderProps) => {
               const el = document.getElementById(id);
               if (el) {
                 el.scrollIntoView({ behavior: "smooth" });
-                // For mobile, close the nav after clicking
-                const isNavOpen = hamburger?.getAttribute("isNavOpen") === "true";
-                if (isNavOpen) {
-                  hamburger.classList.remove("is-active");
-                  navElement?.classList.remove("active");
-                  hamburger.setAttribute("isNavOpen", "false");
-                }
               } else {
                 // retry in case element loads later
                 setTimeout(scrollToHash, 50);
@@ -134,7 +127,30 @@ const CommonHeader = (props: CommonHeaderProps) => {
             }
           }
 
-          setTimeout(scrollToHash, 100);
+          const handleCloseNav = () => {
+            const links = document.querySelectorAll(".header_menus");
+            links.forEach(link => {
+              link.addEventListener("click", function (e) {
+                e.preventDefault();
+                if (hamburger?.getAttribute("isNavOpen") === "true") {
+                  // close menu
+                  hamburger.classList.remove("is-active");
+                  navElement?.classList.remove("active");
+                  hamburger.setAttribute("isNavOpen", "false");
+
+                  // force hard reload
+                  window.location.href = (link as HTMLAnchorElement).href ?? "";
+                }
+              });
+            });
+
+
+          }
+
+          setTimeout(() => {
+            handleCloseNav();
+            scrollToHash();
+          }, 100);
         }}
       </Script>
     </div>
