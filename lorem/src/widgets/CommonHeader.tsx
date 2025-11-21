@@ -26,7 +26,7 @@ const CommonHeader = (props: CommonHeaderProps) => {
 
   const renderMenuItems = (items: MenuElement[], className = "") => {
     return (
-      <ul className={className}>
+      <ul className={className} id="header-menu-ul">
         {items.map((item) => {
           const children = getChildren(item.id);
           const hasChildren = children?.length > 0;
@@ -128,24 +128,29 @@ const CommonHeader = (props: CommonHeaderProps) => {
           }
 
           const handleCloseNav = () => {
-            const links = document.querySelectorAll(".header_menus");
-            links.forEach(link => {
-              link.addEventListener("click", function (e) {
-                e.preventDefault();
-                if (hamburger?.getAttribute("isNavOpen") === "true") {
-                  // close menu
-                  hamburger.classList.remove("is-active");
-                  navElement?.classList.remove("active");
-                  hamburger.setAttribute("isNavOpen", "false");
+            const menuContainer = document.getElementById("header-menu-ul");
+            if (!menuContainer) return;
 
-                  // force hard reload
-                  window.location.href = (link as HTMLAnchorElement).href ?? "";
-                }
-              });
+            menuContainer.addEventListener("click", (e) => {
+              const target = e.target as HTMLElement | null;
+              if (!target) return;
+
+              const link = target.closest(".header_menus") as HTMLAnchorElement | null;
+              if (!link) return;
+
+              e.preventDefault();
+
+              // close mobile menu
+              if (hamburger?.getAttribute("isNavOpen") === "true") {
+                hamburger.classList.remove("is-active");
+                navElement?.classList.remove("active");
+                hamburger.setAttribute("isNavOpen", "false");
+              }
+
+              // force hard reload
+              window.location.href = link.href;
             });
-
-
-          }
+          };
 
           setTimeout(() => {
             handleCloseNav();
