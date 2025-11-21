@@ -40,8 +40,16 @@ const CommonHeader = (props: CommonHeaderProps) => {
                 : "menu-item-type-post_type"
                 }`}
             >
-              <a href={item.url}>{item.title}</a>
-
+              <a
+                href={item.url}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (typeof window !== "undefined") {
+                    window.location.href = item.url;
+                  }
+                }}>
+                {item.title}
+              </a>
               {/* Render sub-menu recursively */}
               {hasChildren && renderMenuItems(children, "sub-menu")}
             </li>
