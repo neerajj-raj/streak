@@ -98,6 +98,19 @@ const CommonHeader = (props: CommonHeaderProps) => {
             }
           }
 
+          const handleHamburgerClick = () => {
+            const isNavOpen = hamburger?.getAttribute("isNavOpen") === "true";
+            if (isNavOpen) {
+              hamburger.classList.remove("is-active");
+              navElement?.classList.remove("active");
+              hamburger.setAttribute("isNavOpen", "false");
+            } else {
+              hamburger.classList.add("is-active");
+              navElement?.classList.add("active");
+              hamburger.setAttribute("isNavOpen", "true");
+            }
+          }
+
           const scrollToHash = () => {
             const hash = window?.location?.hash;
             if (hash) {
@@ -115,16 +128,7 @@ const CommonHeader = (props: CommonHeaderProps) => {
           document.addEventListener("scroll", handleScroll);
 
           hamburger.onclick = () => {
-            const isNavOpen = hamburger?.getAttribute("isNavOpen") === "true";
-            if (isNavOpen) {
-              hamburger.classList.remove("is-active");
-              navElement?.classList.remove("active");
-              hamburger.setAttribute("isNavOpen", "false");
-            } else {
-              hamburger.classList.add("is-active");
-              navElement?.classList.add("active");
-              hamburger.setAttribute("isNavOpen", "true");
-            }
+            handleHamburgerClick();
           }
 
           setTimeout(scrollToHash, 100);
