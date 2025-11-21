@@ -117,6 +117,7 @@ const CommonHeader = (props: CommonHeaderProps) => {
               const id = hash.replace("#", "");
               const el = document.getElementById(id);
               if (el) {
+                handleHamburgerClick();
                 el.scrollIntoView({ behavior: "smooth" });
               } else {
                 // retry in case element loads later
