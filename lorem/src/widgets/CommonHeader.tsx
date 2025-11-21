@@ -40,16 +40,8 @@ const CommonHeader = (props: CommonHeaderProps) => {
                 : "menu-item-type-post_type"
                 }`}
             >
-              <a
-                href={item.url}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (typeof window !== "undefined") {
-                    window.location.href = item.url;
-                  }
-                }}>
-                {item.title}
-              </a>
+              <a href={item.url}>{item.title}</a>
+
               {/* Render sub-menu recursively */}
               {hasChildren && renderMenuItems(children, "sub-menu")}
             </li>
@@ -106,6 +98,20 @@ const CommonHeader = (props: CommonHeaderProps) => {
             }
           }
 
+          const scrollToHash = () => {
+            const hash = window?.location?.hash;
+            if (hash) {
+              const id = hash.replace("#", "");
+              const el = document.getElementById(id);
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+              } else {
+                // retry in case element loads later
+                setTimeout(scrollToHash, 50);
+              }
+            }
+          }
+
           document.addEventListener("scroll", handleScroll);
 
           hamburger.onclick = () => {
@@ -120,6 +126,8 @@ const CommonHeader = (props: CommonHeaderProps) => {
               hamburger.setAttribute("isNavOpen", "true");
             }
           }
+
+          setTimeout(scrollToHash, 100);
         }}
       </Script>
     </div>
