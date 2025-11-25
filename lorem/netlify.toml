@@ -1,11 +1,42 @@
+
+############################
+# Long-term cached assets
+############################
+
 [[headers]]
-  for = "/wp-content/uploads/*"
+for = "/wp-content/uploads/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+  Cache-Control = "public, max-age=31536000, immutable"
+
 [[headers]]
-  for = "/fonts/*"
+for = "/fonts/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+  Cache-Control = "public, max-age=31536000, immutable"
+
+
+############################
+# Edge functions
+############################
+
 [[edge_functions]]
-  path = "/*"
-  function = "router"
+function = "router"
+path = "/*"
+
+
+############################
+# Global security headers
+############################
+
+[[headers]]
+for = "/*"
+  [headers.values]
+  # Security
+  X-Frame-Options = "DENY"
+  Content-Security-Policy = "frame-ancestors 'none'; base-uri 'self';"
+  X-Content-Type-Options = "nosniff"
+  Referrer-Policy = "strict-origin-when-cross-origin"
+  Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+
+  # (Optional but recommended — uncomment if you want them)
+  # Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+  # X-XSS-Protection = "0"
