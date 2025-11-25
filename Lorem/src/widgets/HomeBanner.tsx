@@ -31,9 +31,8 @@ const HomeBanner = (props: HomeBannerProps) => {
           />
           <div className="banner-text">
             {banner1?.banner_heading && <h1>{banner1?.banner_heading}</h1>}
-            <h2></h2>
             <p></p>
-            {banner1?.banner_content && <div dangerouslySetInnerHTML={{ __html: banner1?.banner_content }}></div>}
+            {banner1?.banner_content && <h2 dangerouslySetInnerHTML={{ __html: banner1?.banner_content }}></h2>}
             <p></p>
             <div className="btn-flex">
               {banner1?.button_name_1 &&
