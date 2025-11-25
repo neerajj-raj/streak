@@ -29,7 +29,7 @@ export const getHomePageData = async (props: any) => {
       ...serviceContent?.rankMath ?? {},
       modifiedDate: serviceContent?.modified ?? "",
       publishedDate: serviceContent?.date ?? "",
-      pageUrl: `${siteBaseUrl}/service/${props?.slug}/`
+      pageUrl: `${siteBaseUrl}/services/${props?.slug}/`
     },
   };
 };
