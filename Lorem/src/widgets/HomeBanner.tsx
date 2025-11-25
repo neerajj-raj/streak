@@ -32,7 +32,9 @@ const HomeBanner = (props: HomeBannerProps) => {
           <div className="banner-text">
             {banner1?.banner_heading && <h1>{banner1?.banner_heading}</h1>}
             <p></p>
-            {banner1?.banner_content && <h2 dangerouslySetInnerHTML={{ __html: banner1?.banner_content }}></h2>}
+            {banner1?.banner_content && <div dangerouslySetInnerHTML={{ __html: banner1?.banner_content }}></div>}
+            {/* For SEO */}
+            <h2 style={{ position: "absolute", width: "1px", height: "1px", padding: 0, margin: "-1px", overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap", border: 0, }}>{banner1?.banner_content}</h2>
             <p></p>
             <div className="btn-flex">
               {banner1?.button_name_1 &&
