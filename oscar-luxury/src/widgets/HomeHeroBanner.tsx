@@ -235,7 +235,11 @@ const BannerSearch = ({ years, categories }: { years: filterOption[]; categories
               <div className="dropdown-options absolute z-20 w-full bg-white rounded-2xl shadow-lg overflow-hidden" style={{ display: "none" }}>
                 <Dynamic id="brand-element">
                   <div className="p-3">
-                    <input className="dropdown-search w-full px-6 py-4 rounded-xl bg-gray-100  placeholder-gray-600" placeholder="Search brand" autoComplete="off" />
+                    <input
+                      className="dropdown-search w-full px-6 py-4 rounded-xl bg-gray-100  placeholder-gray-600"
+                      placeholder="Search brand"
+                      autoComplete="off"
+                    />
                   </div>
                   <div className="max-h-40 overflow-y-auto">
                     {categories?.map((category) => (
@@ -473,6 +477,7 @@ const BannerSearch = ({ years, categories }: { years: filterOption[]; categories
 
               clearTimeout(debounceTimer);
 
+              searchParams.set("ad_title", keyword ?? "");
               if (keyword.length < 2) {
                 resultsBox.classList.add("hidden");
                 resultsBox.innerHTML = "";
@@ -546,7 +551,7 @@ const BannerSearch = ({ years, categories }: { years: filterOption[]; categories
           buySearchButton.onclick = (e: any) => {
             e.preventDefault();
             const queryString = searchParams?.toString();
-            window.location.href = `${options?.wpBaseUrl}/search-cars/?${queryString}`;
+            window.location.href = `/inventory?${queryString}`;
           };
 
           bannerHeaderTab.onclick = (e) => {
@@ -676,8 +681,20 @@ const LazyBannerTabs = () => {
       {/* SELL */}
       <div className="banner_tab_view space-y-4" style={{ display: "none" }} banner-tab-view="sell">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input id="sell_car_model" type="text" className="px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-600" placeholder="Your car model" autoComplete="off" />
-          <input id="sell_manuf_year" type="text" className="px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-600" placeholder="Manufacturing year" autoComplete="off" />
+          <input
+            id="sell_car_model"
+            type="text"
+            className="px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-600"
+            placeholder="Your car model"
+            autoComplete="off"
+          />
+          <input
+            id="sell_manuf_year"
+            type="text"
+            className="px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-600"
+            placeholder="Manufacturing year"
+            autoComplete="off"
+          />
         </div>
         <div className="relative flex items-center justify-center gap-4 pt-3">
           <div className="hidden md:block h-px flex-1 bg-linear-to-r from-transparent via-slate-200 to-transparent" />
@@ -691,8 +708,20 @@ const LazyBannerTabs = () => {
       {/* TRADE */}
       <div className="banner_tab_view space-y-4" style={{ display: "none" }} banner-tab-view="trade in">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input id="trade_car_model" type="text" className="px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-600" placeholder="Current car model" autoComplete="off" />
-          <input id="trade_car_want" type="text" className="px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-600" placeholder="Car you want" autoComplete="off" />
+          <input
+            id="trade_car_model"
+            type="text"
+            className="px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-600"
+            placeholder="Current car model"
+            autoComplete="off"
+          />
+          <input
+            id="trade_car_want"
+            type="text"
+            className="px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-600"
+            placeholder="Car you want"
+            autoComplete="off"
+          />
         </div>
         <div className="relative flex items-center justify-center gap-4 pt-3">
           <div className="hidden md:block h-px flex-1 bg-linear-to-r from-transparent via-slate-200 to-transparent" />
