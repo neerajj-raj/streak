@@ -27,7 +27,7 @@ export default function InventoryListHeader({ currentSort, currentSearch }: Inve
   const sortLabel = getLabelFromSort(currentSort);
 
   return (
-    <div className="mb-6 flex max-lg:flex-col gap-4 border-b border-slate-100 pb-6">
+    <div id="inventory-list-header" className="mb-6 flex max-lg:flex-col gap-4 border-b border-slate-100 pb-6">
       <div className="flex items-center justify-between flex-1">
         <div className="flex items-center flex-1">
           {/* Mobile Filter Toggle (Hidden on Desktop) */}

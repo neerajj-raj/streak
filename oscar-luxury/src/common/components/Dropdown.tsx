@@ -1,3 +1,15 @@
+/*
+ * Copyright(c) 2026 Oscar.
+ *
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of Oscar ("Confidential
+ * Information"). You shall not disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the contract agreement you entered into with Oscar.
+ *
+ *
+ * @author Vishakh B S
+ */
 import { Script } from "streak/components";
 
 type DropdownProps = {
@@ -7,7 +19,7 @@ type DropdownProps = {
   options: string[];
   search?: boolean;
   inputSize?: "sm" | "md" | "lg";
-  onSelectCallback?: string; // Name of a global function or event to dispatch
+  onSelectCallback?: string;
 };
 
 export default function Dropdown({ id, value, placeholder = "Select", options, search = false, inputSize = "md" }: DropdownProps) {
@@ -18,7 +30,7 @@ export default function Dropdown({ id, value, placeholder = "Select", options, s
       <button
         id={`btn-${id}`}
         type="button"
-        className={`relative flex w-full items-center rounded-lg border border-slate-300 bg-white px-4 text-left text-slate-900 outline-none transition-colors focus:border-amber-400 max-lg:text-xs ${heightClass}`}
+        className={`relative flex w-full items-center justify-between rounded-lg border border-slate-300 bg-white px-4 text-left text-slate-900 outline-none transition-colors focus:border-amber-400 max-lg:text-xs ${heightClass}`}
       >
         <span id={`label-${id}`} className={`flex-1 truncate ${value ? "" : "text-slate-400"}`}>
           {value || placeholder}
@@ -40,7 +52,7 @@ export default function Dropdown({ id, value, placeholder = "Select", options, s
         </svg>
       </button>
 
-      <div id={`menu-${id}`} className="absolute left-0 top-full z-50 mt-1 hidden w-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg">
+      <div id={`menu-${id}`} className="absolute left-0 top-full z-[100] mt-1 hidden overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg">
         {search && (
           <div className="border-b border-slate-200 p-2">
             <div className="relative">
@@ -79,7 +91,6 @@ export default function Dropdown({ id, value, placeholder = "Select", options, s
         </div>
       </div>
 
-      {/* FIX: Cast options to 'any' to bypass strict function-type check */}
       <Script id={`script-${id}`} options={{ id } as any}>
         {(gDom, ctx) => {
           const wrapper = gDom.document.getElementById(`dropdown-wrapper-${ctx.id}`);
@@ -92,29 +103,60 @@ export default function Dropdown({ id, value, placeholder = "Select", options, s
 
           if (!btn || !menu) return;
 
+          // Helper: Update Position (Emulating Portal/Popper behavior)
+          const updatePosition = () => {
+            const rect = btn.getBoundingClientRect();
+            // logic: open up if space below is tight
+            const spaceBelow = window.innerHeight - rect.bottom;
+            const menuHeight = 250; // Approx max height
+            const openUp = spaceBelow < menuHeight + 12;
+
+            menu.style.position = "fixed";
+            menu.style.width = `${rect.width}px`;
+            menu.style.left = `${rect.left}px`;
+
+            if (openUp) {
+              menu.style.top = "auto";
+              menu.style.bottom = `${window.innerHeight - rect.top + 6}px`;
+            } else {
+              menu.style.bottom = "auto";
+              menu.style.top = `${rect.bottom + 6}px`;
+            }
+          };
+
           // Toggle Menu
           btn.addEventListener("click", (e) => {
             e.stopPropagation();
             const isHidden = menu.classList.contains("hidden");
+
             if (isHidden) {
-              // Close other dropdowns
+              // Close all other dropdowns first
               gDom.document.querySelectorAll('[id^="menu-"]').forEach((el) => el.classList.add("hidden"));
               gDom.document.querySelectorAll('[id^="icon-"]').forEach((el) => el.classList.remove("rotate-180"));
 
+              // Open this one
+              updatePosition(); // Calculate position immediately
               menu.classList.remove("hidden");
               icon?.classList.add("rotate-180");
               if (searchInput) searchInput.focus();
+
+              // Add scroll listener to update position while scrolling
+              window.addEventListener("scroll", updatePosition, true);
+              window.addEventListener("resize", updatePosition);
             } else {
               menu.classList.add("hidden");
               icon?.classList.remove("rotate-180");
+              window.removeEventListener("scroll", updatePosition, true);
+              window.removeEventListener("resize", updatePosition);
             }
           });
 
           // Click Outside
           gDom.document.addEventListener("click", (e) => {
-            if (!wrapper?.contains(e.target as Node)) {
+            if (!wrapper?.contains(e.target as Node) && !menu.contains(e.target as Node)) {
               menu.classList.add("hidden");
               icon?.classList.remove("rotate-180");
+              window.removeEventListener("scroll", updatePosition, true);
             }
           });
 
@@ -127,8 +169,8 @@ export default function Dropdown({ id, value, placeholder = "Select", options, s
                 label.classList.remove("text-slate-400");
                 menu.classList.add("hidden");
                 icon?.classList.remove("rotate-180");
+                window.removeEventListener("scroll", updatePosition, true);
 
-                // Dispatch Custom Event
                 const event = new CustomEvent("streak-dropdown-change", {
                   detail: { id: ctx.id, value: val },
                 });
@@ -137,7 +179,7 @@ export default function Dropdown({ id, value, placeholder = "Select", options, s
             });
           });
 
-          // Search Functionality
+          // Search
           if (searchInput) {
             searchInput.addEventListener("input", (e) => {
               const query = (e.target as HTMLInputElement).value.toLowerCase();

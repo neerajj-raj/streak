@@ -10,11 +10,11 @@
  *
  * @author Vishakh B S
  */
-import { getMenuContents, getInventoryPageContents, getInventoryFilters } from "@services/wordPress";
+import { getMenuContents, getInventoryFilters } from "@services/wordPress";
 import { getPageUrl, splitMenuItemsBySlug } from "@utils/commonUtils";
 
-export const getInventoryData = async (searchParams?: TypeInventoryFilters) => {
-  const [menuContents, inventoryData, filterData] = await Promise.all([getMenuContents(), getInventoryPageContents(searchParams), getInventoryFilters()]);
+export const getInventoryData = async () => {
+  const [menuContents, filters] = await Promise.all([getMenuContents(), getInventoryFilters()]);
 
   const { headerMenu, inventoryMenu, footerQuickLinks } = splitMenuItemsBySlug(menuContents);
 
@@ -44,8 +44,7 @@ export const getInventoryData = async (searchParams?: TypeInventoryFilters) => {
         { label: "Inventory", href: "/inventory" },
       ],
     },
-    // 2. Pass the full API response (data + pagination) to the component
-    InventoryList: inventoryData.data,
+    InventoryFilter: { filters },
     CommonFooter: { inventoryMenu: inventoryMenu ?? [], footerQuickLinks: footerQuickLinks ?? [] },
   };
 };

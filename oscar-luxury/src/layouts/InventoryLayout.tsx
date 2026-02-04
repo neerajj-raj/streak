@@ -28,11 +28,13 @@ const InventoryLayout = () => {
           <section className="pt-4 pb-6 lg:pt-8 lg:pb-14">
             <div className="container">
               <div className="flex gap-6 lg:gap-8 xl:gap-14">
-                <div className="hidden lg:block w-[280px] xl:w-[320px] shrink-0">{/* TODO: Add Inventory Filter Component */}</div>
+                <div className="hidden lg:block w-[280px] xl:w-[320px] shrink-0">
+                  <WidgetPlaceholder id="InventoryFilter" type="InventoryFilter" />
+                </div>
                 <div className="flex-1">
-                  {/* TODO: Add InventoryListHeader, InventoryList and Pagination respectively here */}
                   <WidgetPlaceholder id="InventoryListHeader" type="InventoryListHeader" />
                   <WidgetPlaceholder id="InventoryList" type="InventoryList" />
+                  {/* TODO: Add Pagination here */}
                 </div>
               </div>
             </div>

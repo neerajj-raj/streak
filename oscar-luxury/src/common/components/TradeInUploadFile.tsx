@@ -17,13 +17,14 @@ import UploadCloud from "@common/icons/UploadCloud";
 type TradeInUploadFileProps = { maxFiles?: number };
 
 type TradeInUploadedFile = {
-  uuid: string; 
-  file_id: string; 
+  uuid: string;
+  file_id: string;
   url: string;
   size: number;
   type: string;
   name: string;
-  status?: "uploading" | "done" | "error";
+  status: "queued" | "uploading" | "done" | "error";
+  fingerprint: string;
 };
 
 export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFileProps) {
@@ -33,14 +34,23 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
       <div
         id="upload-dropzone"
         data-max-files={maxFiles}
-        className="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-300 p-8 text-center hover:border-slate-400"
-        tabIndex={0}
+        className="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-300 bg-white p-8 text-center cursor-pointer hover:border-slate-400"
         role="button"
         aria-label="Upload car images"
       >
         <UploadCloud className="h-8 w-8 text-slate-500" />
-        <p className="text-sm font-semibold text-slate-700">Click or drag files to this area to upload.</p>
-        <p className="text-xs text-slate-500">You can upload up to {maxFiles} files.</p>
+        <div className="space-y-1">
+          <p className="text-sm font-semibold text-slate-700">
+            Click or drag files to this area to upload.
+          </p>
+          <p className="text-xs text-slate-500">
+            You can upload up to {maxFiles} file{maxFiles > 1 ? "s" : ""}.
+          </p>
+          <p className="text-xs text-slate-500">
+            Supported file types:{" "}
+            <span className="font-medium text-secondary">JPG, PNG, GIF</span>
+          </p>
+        </div>
 
         <input id="image-upload" type="file" multiple accept=".png,.jpg,.gif" className="hidden" aria-label="Upload car images" />
       </div>
@@ -63,9 +73,11 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
             const dropzone = document.getElementById("upload-dropzone") as HTMLElement | null;
             const input = document.getElementById("image-upload") as HTMLInputElement | null;
             const list = document.getElementById("upload-list") as HTMLElement | null;
-            const errorEl = document.getElementById("upload-error") as HTMLElement | null;
+            const uploadErrorEl = document.getElementById("upload-error") as HTMLElement | null;
 
-            if (!dropzone || !input || !list || !errorEl) return;
+            const formErrorEl = document.getElementById("error-image") as HTMLElement | null;
+
+            if (!dropzone || !input || !list || !uploadErrorEl) return;
 
             // ===== CONFIG =====
             const FORM_ID = "16436";
@@ -76,70 +88,110 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
             const WPFORMS_UPLOAD_FIELD = `wpforms_${FORM_ID}_${FIELD_ID}`;
 
             const MAX = Number(dropzone.dataset.maxFiles || "3");
-            const ALLOWED_MIME = ["image/png", "image/jpg","image/jpeg", "image/gif"];
             const MAX_FILE_SIZE = 5 * 1024 * 1024;
-            const CHUNK_SIZE = 1 * 1024 * 1024; 
-
-            const CONCURRENCY = 2;
+            const CHUNK_SIZE = 1 * 1024 * 1024;
 
             const uploadedFiles: TradeInUploadedFile[] = [];
 
             let pendingUploads = 0;
-            let submitInterceptorAttached = false;
+            // queue: sequential upload order
+            const queue: Array<{ file: File; uf: TradeInUploadedFile }> = [];
+            let workerRunning = false;
+
+            // abort only current upload so X works
+            let activeAbort: AbortController | null = null;
+            let activeUploadUUID: string | null = null;
 
             (window as any).__tradeInUploadedFiles = (window as any).__tradeInUploadedFiles || [];
             (window as any).__tradeInPendingUploads = 0;
 
-            const showError = (msg: string) => {
-              errorEl.textContent = msg;
-              errorEl.classList.remove("hidden");
+
+            // ===== Pending setter + finish event =====
+            const setPending = (n: number) => {
+              pendingUploads = Math.max(0, n);
+              (window as any).__tradeInPendingUploads = pendingUploads;
+
+              if (pendingUploads === 0) {
+                document.dispatchEvent(new Event("tradein:uploads-finished"));
+              }
+            };
+            const applyErrorStyle = () => {
+              requestAnimationFrame(() => {
+                dropzone.style.borderColor = "#ef4444";
+                dropzone.style.backgroundColor = "#fff5f5";
+              });
             };
 
-            const hideError = () => {
-              errorEl.textContent = "";
-              errorEl.classList.add("hidden");
+            const clearErrorStyle = () => {
+              requestAnimationFrame(() => {
+                dropzone.style.borderColor = "";
+                dropzone.style.backgroundColor = "";
+              });
             };
+
+            // ===== 5s auto-hide validation messages =====
+            let errorTimer: number | null = null;
+            const scheduleErrorAutoHide = () => {
+              if (errorTimer) window.clearTimeout(errorTimer);
+              errorTimer = window.setTimeout(() => {
+                clearErrorAll();
+              }, 5000);
+            };
+
+            // ===== Suppress validation errors after submit click =====
+            const isSuppressedNow = () => {
+              const until = Number((window as any).__tradeInSuppressUploadErrorsUntil || 0);
+              return Date.now() < until;
+            };
+
+            // ===== Error show/clear (single place, auto-hide 5s) =====
+            const showErrorOnce = (msg: string) => {
+              if (isSuppressedNow()) return;
+
+              if (formErrorEl) {
+                formErrorEl.textContent = msg;
+                formErrorEl.classList.remove("hidden");
+                uploadErrorEl.textContent = "";
+                uploadErrorEl.classList.add("hidden");
+              } else {
+                uploadErrorEl.textContent = msg;
+                uploadErrorEl.classList.remove("hidden");
+              }
+
+              applyErrorStyle();
+              scheduleErrorAutoHide();
+            };
+
+            const clearErrorAll = () => {
+              if ((window as any).__tradeInForceImageError && pendingUploads > 0) return;
+              if (errorTimer) {
+                window.clearTimeout(errorTimer);
+                errorTimer = null;
+              }
+
+              if (formErrorEl) {
+                formErrorEl.textContent = "";
+                formErrorEl.classList.add("hidden");
+              }
+              uploadErrorEl.textContent = "";
+              uploadErrorEl.classList.add("hidden");
+
+              clearErrorStyle();
+            };
+
+            (window as any).__clearTradeInUploadUI = () => clearErrorAll();
 
             const imageErrorEl = document.getElementById("error-image") as HTMLElement | null;
 
-            const showImageError = (msg: string) => {
-              showError(msg);
 
-              if (imageErrorEl) {
-                imageErrorEl.textContent = msg;
-                imageErrorEl.classList.remove("hidden");
-              }
-            };
-
-            const clearImageError = () => {
-              hideError();
-              if (imageErrorEl) {
-                imageErrorEl.textContent = "";
-                imageErrorEl.classList.add("hidden");
-              }
-
-              // remove red border/validation state if you ever set it
-              dropzone.style.borderColor = "";
-              dropzone.removeAttribute("aria-invalid");
-            };
-
+            // ===== Helpers =====
             const formatMB = (bytes: number) => (bytes / (1024 * 1024)).toFixed(2);
 
-            const parseJSONSafe = async (res: Response) => {
-              const raw = await res.text();
-              try {
-                return { json: JSON.parse(raw), raw };
-              } catch {
-                return { json: null as any, raw };
-              }
+            const isAllowedFile = (file: File) => {
+              const ext = file.name.split(".").pop()?.toLowerCase();
+              return ext === "png" || ext === "jpg" || ext === "gif";
             };
-
-            const extractFileId = (payload: any): string | null => {
-              const candidates = [payload?.data?.file_id, payload?.data?.file, payload?.data?.name, payload?.file_id, payload?.file, payload?.name].filter(
-                Boolean
-              );
-              return candidates.length ? String(candidates[0]) : null;
-            };
+            const fingerprintOf = (f: File) => `${f.name}|${f.size}|${f.lastModified}`;
 
             // Create/find the hidden input WPForms will submit (wpforms_7667_33)
             const ensureWPFormsUploadInput = (): HTMLInputElement => {
@@ -158,7 +210,7 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
 
               el = document.createElement("input");
               el.type = "hidden";
-              el.name = WPFORMS_UPLOAD_FIELD; // EXACT like cURL
+              el.name = WPFORMS_UPLOAD_FIELD;
               el.value = "[]";
 
               (nearestForm || document.body).appendChild(el);
@@ -181,9 +233,18 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
                 }));
             };
 
-            // Sync to hidden input + global mirror
             const syncToWPForms = () => {
-              const payload = buildPayload();
+              const payload = uploadedFiles
+                .filter((f) => f.status === "done" && f.file_id)
+                .map((f) => ({
+                  name: f.name,
+                  file: f.file_id,
+                  url: f.url,
+                  size: f.size,
+                  type: f.type,
+                  file_user_name: f.name,
+                }));
+
               const hidden = ensureWPFormsUploadInput();
               hidden.value = JSON.stringify(payload);
 
@@ -194,37 +255,112 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
               hidden.dispatchEvent(new Event("change", { bubbles: true }));
             };
 
-            // Optional: block native submit if any uploads pending
-            const attachSubmitInterceptorOnce = () => {
-              if (submitInterceptorAttached) return;
-              submitInterceptorAttached = true;
+            // ===== Render queue labels =====
+            const render = () => {
+              list.innerHTML = "";
 
-              const hidden = ensureWPFormsUploadInput();
-              const form =
-                (document.getElementById("trade-in-form") as HTMLFormElement | null) ||
-                hidden.closest("form") ||
-                dropzone.closest("form") ||
-                document.querySelector<HTMLFormElement>("form");
+              if (!uploadedFiles.length) {
+                list.classList.add("hidden");
+                syncToWPForms();
+                return;
+              }
 
-              if (!form) return;
+              list.classList.remove("hidden");
 
-              form.addEventListener(
-                "submit",
-                (e) => {
-                  if (pendingUploads > 0) {
-                    e.preventDefault();
-                    showError("Please wait — images are still uploading.");
-                    return;
-                  }
-                  // final sync
-                  syncToWPForms();
-                },
-                true
-              );
+              uploadedFiles.forEach((uf, index) => {
+                const row = document.createElement("div");
+                row.className =
+                  "flex items-center justify-between rounded-lg border border-slate-200 bg-white px-4 py-2";
+
+                const left = document.createElement("div");
+                left.className = "flex items-center gap-3 min-w-0";
+
+                const icon = document.createElement("span");
+                icon.innerHTML = `
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       viewBox="0 0 24 24"
+                       fill="none" stroke="currentColor"
+                       stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                       class="h-4 w-4 text-slate-500">
+                    <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                    <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l6 6v10a2 2 0 0 1-2 2Z"></path>
+                    <path d="M12 17H8"></path>
+                    <path d="M16 13H8"></path>
+                  </svg>
+                `;
+
+                const name = document.createElement("span");
+                name.className = "truncate text-sm text-slate-700";
+                if (uf.status === "queued") name.textContent = `${uf.name} (Queued...)`;
+                else if (uf.status === "uploading") name.textContent = `${uf.name} (Uploading...)`;
+                else name.textContent = uf.name;
+
+                left.append(icon, name);
+
+                const rm = document.createElement("button");
+                rm.type = "button";
+                rm.setAttribute("aria-label", `Remove ${uf.name}`);
+                rm.style.color = "#90a1b9";
+                rm.style.transition = "color 150ms ease";
+                rm.innerHTML = `
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       viewBox="0 0 24 24"
+                       fill="none" stroke="currentColor"
+                       stroke-width="2"
+                       stroke-linecap="round"
+                       stroke-linejoin="round"
+                       class="h-4 w-4">
+                    <path d="M18 6 6 18"></path>
+                    <path d="m6 6 12 12"></path>
+                  </svg>
+                `;
+
+                rm.addEventListener("mouseenter", () => (rm.style.color = "#fb2c36"));
+                rm.addEventListener("mouseleave", () => (rm.style.color = "#90a1b9"));
+
+                rm.onclick = () => {
+                  // abort current upload if removing active
+                  if (uf.uuid === activeUploadUUID && activeAbort) activeAbort.abort();
+
+                  uploadedFiles.splice(index, 1);
+                  const qi = queue.findIndex((q) => q.uf.uuid === uf.uuid);
+                  if (qi >= 0) queue.splice(qi, 1);
+
+                  // user action -> clear validation immediately
+                  clearErrorAll();
+                  render();
+                };
+
+                row.append(left, rm);
+                list.appendChild(row);
+              });
+
+              syncToWPForms();
             };
 
-            // ===== WPForms upload flow (init → chunk → finalize) =====
-            const uploadInit = async (file: File, uuid: string, totalChunks: number) => {
+            // ===== WPForms upload flow =====
+            const parseJSONSafe = async (res: Response) => {
+              const raw = await res.text();
+              try {
+                return { json: JSON.parse(raw), raw };
+              } catch {
+                return { json: null as any, raw };
+              }
+            };
+
+            const extractFileId = (payload: any): string | null => {
+              const candidates = [
+                payload?.data?.file_id,
+                payload?.data?.file,
+                payload?.data?.name,
+                payload?.file_id,
+                payload?.file,
+                payload?.name,
+              ].filter(Boolean);
+              return candidates.length ? String(candidates[0]) : null;
+            };
+
+            const uploadInit = async (file: File, uuid: string, totalChunks: number, signal: AbortSignal) => {
               const body = new URLSearchParams({
                 action: "wpforms_upload_chunk_init",
                 form_id: FORM_ID,
@@ -247,6 +383,7 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
                 },
                 body,
                 credentials: "include",
+                signal,
               });
 
               const { json, raw } = await parseJSONSafe(res);
@@ -257,7 +394,13 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
               return json;
             };
 
-            const uploadChunk = async (file: File, uuid: string, idx: number, totalChunks: number) => {
+            const uploadChunk = async (
+              file: File,
+              uuid: string,
+              idx: number,
+              totalChunks: number,
+              signal: AbortSignal
+            ) => {
               const start = idx * CHUNK_SIZE;
               const end = Math.min(start + CHUNK_SIZE, file.size);
               const blob = file.slice(start, end);
@@ -272,27 +415,21 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
               fd.append("dzchunksize", String(CHUNK_SIZE));
               fd.append("dztotalchunkcount", String(totalChunks));
               fd.append("dzchunkbyteoffset", String(start));
-
-              // WPForms expects this file key:
               fd.append(`wpforms_${FORM_ID}_${FIELD_ID}`, blob, file.name);
 
               const res = await fetch(AJAX_URL, {
                 method: "POST",
                 body: fd,
                 credentials: "include",
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+                signal,
               });
 
-              const { json, raw } = await parseJSONSafe(res);
-              if (!res.ok || !json) {
-                console.error("CHUNK failed:", res.status, raw);
-                throw new Error("Chunk upload failed.");
-              }
-              return json;
+              if (!res.ok) throw new Error("Chunk upload failed.");
             };
 
-            const uploadFinalize = async (file: File, uuid: string, totalChunks: number) => {
+            const uploadFinalize = async (file: File, uuid: string, totalChunks: number, signal: AbortSignal) => {
               const last = totalChunks - 1;
-
               const body = new URLSearchParams({
                 action: "wpforms_file_chunks_uploaded",
                 form_id: FORM_ID,
@@ -315,6 +452,7 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
                 },
                 body,
                 credentials: "include",
+                signal,
               });
 
               const { json, raw } = await parseJSONSafe(res);
@@ -325,233 +463,168 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
               return json;
             };
 
-            const uploadFileToWPForms = async (file: File) => {
+            const uploadFileToWPForms = async (file: File, uf: TradeInUploadedFile) => {
               const uuid = crypto.randomUUID();
               const totalChunks = Math.max(1, Math.ceil(file.size / CHUNK_SIZE));
 
-              const initResp = await uploadInit(file, uuid, totalChunks);
+              activeAbort = new AbortController();
+              activeUploadUUID = uf.uuid;
+
+              await uploadInit(file, uuid, totalChunks, activeAbort.signal);
+
               for (let i = 0; i < totalChunks; i++) {
-                await uploadChunk(file, uuid, i, totalChunks);
+                await uploadChunk(file, uuid, i, totalChunks, activeAbort.signal);
               }
-              const finResp = await uploadFinalize(file, uuid, totalChunks);
 
-              const fileId = extractFileId(finResp) || extractFileId(initResp);
+              const fin = await uploadFinalize(file, uuid, totalChunks, activeAbort.signal);
 
+              const fileId = extractFileId(fin);
               if (!fileId) throw new Error("Upload finished but file_id missing.");
 
-              return { uuid, file_id: fileId };
+              uf.file_id = fileId;
+              uf.url = `${TMP_BASE}${fileId}`;
+              uf.status = "done";
+              window.dispatchEvent(new Event("tradein:image-uploaded"));
+
+              activeAbort = null;
+              activeUploadUUID = null;
+
+              render();
             };
 
-            const removeFileOnServer = async (uf: TradeInUploadedFile) => {
+            // ===== sequential worker =====
+            const startWorker = async () => {
+              if (workerRunning) return;
+              workerRunning = true;
+
               try {
-                await fetch(AJAX_URL, {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                    "X-Requested-With": "XMLHttpRequest",
-                  },
-                  body: new URLSearchParams({
-                    action: "wpforms_remove_file",
-                    form_id: FORM_ID,
-                    field_id: FIELD_ID,
-                    file: uf.file_id,
-                  }),
-                  credentials: "include",
-                });
-              } catch {
-                showError("Could not remove file from server.");
-              }
-            };
-
-            // ===== UI render =====
-            const render = () => {
-              list.innerHTML = "";
-
-              if (!uploadedFiles.length) {
-                clearImageError();
-                list.classList.add("hidden");
-                syncToWPForms();
-                return;
-              }
-
-              list.classList.remove("hidden");
-              uploadedFiles.forEach((uf, index) => {
-                const row = document.createElement("div");
-                row.className = "flex items-center justify-between rounded-lg border border-slate-200 bg-white px-4 py-2";
-
-                const left = document.createElement("div");
-                left.className = "flex items-center gap-3";
-
-                const icon = document.createElement("span");
-                icon.innerHTML = `
-                  <svg xmlns="http://www.w3.org/2000/svg"
-                       viewBox="0 0 24 24"
-                       fill="none" stroke="currentColor" stroke-width="2"
-                       stroke-linecap="round" stroke-linejoin="round"
-                       class="h-4 w-4 text-slate-500">
-                    <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
-                    <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l6 6v10a2 2 0 0 1-2 2Z"></path>
-                    <path d="M12 17H8"></path>
-                    <path d="M16 13H8"></path>
-                  </svg>
-                `;
-
-                const name = document.createElement("span");
-                name.className = "text-sm text-slate-700 truncate";
-                name.textContent = uf.name;
-
-                left.append(icon, name);
-
-                const rm = document.createElement("button");
-                rm.type = "button";
-                rm.setAttribute("aria-label", `Remove ${uf.name}`);
-                rm.style.color = "#90a1b9";
-                rm.style.transition = "color 150ms ease";
-                rm.innerHTML = `
-                  <svg xmlns="http://www.w3.org/2000/svg"
-                       viewBox="0 0 24 24"
-                       fill="none" stroke="currentColor"
-                       stroke-width="2"
-                       stroke-linecap="round"
-                       stroke-linejoin="round"
-                       class="h-4 w-4">
-                    <path d="M18 6 6 18"></path>
-                    <path d="m6 6 12 12"></path>
-                  </svg>
-                `;
-                rm.addEventListener("mouseenter", () => (rm.style.color = "#fb2c36"));
-                rm.addEventListener("mouseleave", () => (rm.style.color = "#90a1b9"));
-
-                rm.addEventListener("click", async () => {
-                  if (uf.status === "uploading") return;
-                  await removeFileOnServer(uf);
-                  uploadedFiles.splice(index, 1);
-                  clearImageError();
-                  render();
-                });
-
-                row.append(left, rm);
-                list.appendChild(row);
-              });
-
-              syncToWPForms();
-            };
-
-            // ===== Upload queue with small concurrency =====
-            const runQueue = async (files: File[]) => {
-              const queue = [...files];
-
-              const worker = async () => {
                 while (queue.length) {
-                  const file = queue.shift()!;
-                  pendingUploads++;
-                  (window as any).__tradeInPendingUploads = pendingUploads;
+                  const item = queue.shift();
+                  if (!item) break;
 
-                  const placeholder: TradeInUploadedFile = {
-                    uuid: crypto.randomUUID(),
-                    file_id: "",
-                    url: "",
-                    size: file.size,
-                    type: file.type,
-                    name: file.name,
-                    status: "uploading",
-                  };
+                  const { file, uf } = item;
+                  if (!uploadedFiles.some((x) => x.uuid === uf.uuid)) continue;
 
-                  uploadedFiles.push(placeholder);
+                  setPending(pendingUploads + 1);
+
+                  uf.status = "uploading";
                   render();
 
                   try {
-                    const meta = await uploadFileToWPForms(file);
-                    placeholder.uuid = meta.uuid;
-                    placeholder.file_id = meta.file_id;
-                    placeholder.url = `${TMP_BASE}${meta.file_id}`;
-                    placeholder.status = "done";
-                    clearImageError();
+                    await uploadFileToWPForms(file, uf);
                   } catch (e: any) {
-                    console.error(e);
-                    placeholder.status = "error";
-                    showError(e?.message || "Upload failed.");
+                    if (e?.name !== "AbortError") {
+                      uf.status = "error";
+                      showErrorOnce(e?.message || "Upload failed.");
+                      render();
+                    }
                   } finally {
-                    pendingUploads--;
-                    (window as any).__tradeInPendingUploads = pendingUploads;
-                    render();
+                    setPending(pendingUploads - 1);
+                    syncToWPForms();
                   }
                 }
-              };
-
-              const workers = Array.from({ length: CONCURRENCY }, () => worker());
-              await Promise.all(workers);
+              } finally {
+                workerRunning = false;
+              }
             };
 
-            const addFiles = async (fileList: FileList | null) => {
+            // ===== add files (validation errors 5s only) =====
+            const addFiles = (fileList: FileList | null) => {
               if (!fileList) return;
 
-              clearImageError();
+              // user action -> clear previous error immediately
+              clearErrorAll();
 
               const all = Array.from(fileList);
+              const activeCount = uploadedFiles.filter((f) => f.status !== "error").length;
+              const slots = MAX - activeCount;
 
-              // Filter by mime
-              const selected = all.filter((f) => ALLOWED_MIME.includes(f.type));
-
-              if (!selected.length) {
-                showImageError("Only PNG, JPG and GIF files are allowed.");
+              if (slots <= 0) {
+                showErrorOnce(`You can upload a maximum of ${MAX} images`);
                 input.value = "";
                 return;
               }
 
-              // ✅ size validation (5MB)
-              const oversized = selected.find((f) => f.size > MAX_FILE_SIZE);
-              if (oversized) {
-                showImageError(`Maximum file size is 5MB. "${oversized.name}" is ${formatMB(oversized.size)}MB.`);
-                // mark invalid styling (optional)
-                dropzone.style.borderColor = "red";
-                dropzone.setAttribute("aria-invalid", "true");
+              const existing = new Set(uploadedFiles.map((u) => u.fingerprint));
+              const valid: File[] = [];
+              let showedError = false;
+
+              for (const f of all) {
+                const fp = fingerprintOf(f);
+
+                if (existing.has(fp)) {
+                  if (!showedError) {
+                    showErrorOnce("This image is already added.");
+                    showedError = true;
+                  }
+                  continue;
+                }
+                if (!isAllowedFile(f)) {
+                  if (!showedError) {
+                    showErrorOnce("Only PNG, JPG and GIF files are allowed.");
+                    showedError = true;
+                  }
+                  continue;
+                }
+                if (f.size > MAX_FILE_SIZE) {
+                  if (!showedError) {
+                    showErrorOnce(`Maximum file size is 5MB. "${f.name}" is ${formatMB(f.size)}MB.`);
+                    showedError = true;
+                  }
+                  continue;
+                }
+
+                existing.add(fp);
+                valid.push(f);
+              }
+
+              if (!valid.length) {
                 input.value = "";
                 return;
               }
 
-              const currentCount = uploadedFiles.filter((f) => f.status !== "error").length;
-              const availableSlots = MAX - currentCount;
-
-              if (availableSlots <= 0) {
-                showImageError(`You can upload a maximum of ${MAX} images`);
-                input.value = "";
-                return;
+              const toUpload = valid.slice(0, slots);
+              if (valid.length > slots && !showedError) {
+                showErrorOnce(`You can upload a maximum of ${MAX} images`);
               }
 
-              const toUpload = selected.slice(0, availableSlots);
+              for (const file of toUpload) {
+                const uf: TradeInUploadedFile = {
+                  uuid: crypto.randomUUID(),
+                  file_id: "",
+                  url: "",
+                  size: file.size,
+                  type: file.type,
+                  name: file.name,
+                  status: "queued",
+                  fingerprint: fingerprintOf(file),
+                };
 
-              if (toUpload.length < selected.length) {
-                showImageError(`You can upload a maximum of ${MAX} images`);
+                uploadedFiles.push(uf);
+                queue.push({ file, uf });
               }
 
-              // disable dropzone while uploading
-              dropzone.style.pointerEvents = "none";
-              dropzone.style.opacity = "0.75";
-
-              await runQueue(toUpload);
-
-              dropzone.style.pointerEvents = "";
-              dropzone.style.opacity = "";
+              render();
+              startWorker();
               input.value = "";
             };
 
-            // Reset function
+            // ===== reset after submit success =====
             (window as any).__resetTradeInUpload = () => {
+              if (activeAbort) activeAbort.abort();
+              activeAbort = null;
+              activeUploadUUID = null;
+
+              queue.length = 0;
               uploadedFiles.length = 0;
+              setPending(0);
+
               list.innerHTML = "";
               list.classList.add("hidden");
               input.value = "";
 
-              const hidden = ensureWPFormsUploadInput();
-              hidden.value = "[]";
-              hidden.dispatchEvent(new Event("input", { bubbles: true }));
-              hidden.dispatchEvent(new Event("change", { bubbles: true }));
-
-              (window as any).__tradeInUploadedFiles = [];
-              (window as any).__tradeInPendingUploads = 0;
-
-              clearImageError();
+              clearErrorAll();
+              syncToWPForms();
             };
 
             // events
@@ -570,7 +643,6 @@ export default function TradeInUploadFile({ maxFiles = 3 }: TradeInUploadFilePro
             input.addEventListener("change", () => addFiles(input.files));
 
             ensureWPFormsUploadInput();
-            attachSubmitInterceptorOnce();
             render();
           });
         }}

@@ -11,31 +11,27 @@
  * @author Anagha Chandrababu
  */
 
-import {getMenuContents} from "@services/wordPress";
+import {getMenuContents, getPageContentBySlug} from "@services/wordPress";
 import { getPageUrl, splitMenuItemsBySlug } from "@utils/commonUtils";
 
 export const getSellCarData = async () => {
   // https://oscarluxury.com/wp-json/custom/v1/menus
 
-  const [menuContents] = await Promise.all([
-    getMenuContents(),
-  ]);
+  const [menuContents, pageContents] = await Promise.all([getMenuContents(), getPageContentBySlug("streak-sell-car")]);
+
+  const sellCarAcfContents = pageContents?.[0]?.acf ?? {};
   const { headerMenu, inventoryMenu, footerQuickLinks } = splitMenuItemsBySlug(menuContents);
-  const appHead = {
-    meta_title: "Sell Car",
-    meta_description: "Explore our latest collection of luxury vehicles",
-  };
   return {
-     AppHead: { ...{ appHead }, canonical_url: getPageUrl("sell-car") },
+    AppHead: { ...(sellCarAcfContents?.app_head ?? {}), canonical_url: getPageUrl("sell-car") },
     CommonHeader: { headerMenu: headerMenu ?? [] },
     CommonFooter: { inventoryMenu: inventoryMenu ?? [], footerQuickLinks: footerQuickLinks ?? [] },
      BreadcrumbsBanner: {
-      title: "Sell Car",
-      description: "",
-      bgImage: "/images/sell/banner04.webp",
+       title: sellCarAcfContents?.breadcrumbs_banner?.title ?? "Sell Car",
+      description: sellCarAcfContents?.breadcrumbs_banner?.description ?? "",
+      bgImage: sellCarAcfContents?.breadcrumbs_banner?.background_image ?? "/images/sell/banner04.webp",
       breadcrumbs: [
         { label: "Home", href: "/" },
-        { label: "Sell Car", href: "/sell-car" },
+        { label: "Sell Car", href: "/streak-sell-car" },
       ],
     },
     common: {

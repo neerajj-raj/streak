@@ -24,7 +24,6 @@ export const getTradeInData = async () => {
 
   const plpFiltersResponse = await getPlpFilters();
   const categories = plpFiltersResponse?.categories ?? [];
-  const condition = plpFiltersResponse?.condition ?? [];
 
   const tradeInAcfContents = pageContents?.[0]?.acf ?? {};
   const { headerMenu, inventoryMenu, footerQuickLinks } = splitMenuItemsBySlug(menuContents);
@@ -54,7 +53,6 @@ export const getTradeInData = async () => {
     },
     TradeIn: {
       categories,
-      condition,
     },
 
   };

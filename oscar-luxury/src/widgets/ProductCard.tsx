@@ -10,6 +10,8 @@
  *
  * @author Vishakh B S
  */
+
+// TODO: Remove this file before going live
 import { Button } from "@common/components/Button";
 
 const BADGE_CONFIG = {

@@ -16,13 +16,11 @@ import TradeProcess from "./TradeProcess";
 type TradeInProps = {
   data?: {
     categories: any[];
-    condition: any[];
   };
 };
 
 const TradeIn = ({ data }: TradeInProps) => {
   const categories = data?.categories ?? [];
-  const condition = data?.condition ?? [];
 
   return (
     <section className="py-10 md:py-14 lg:py-24">
@@ -31,7 +29,6 @@ const TradeIn = ({ data }: TradeInProps) => {
           <div className="xl:w-7/12">
             <TradeForm
               categories={categories}
-              condition={condition}
             />
           </div>
           <div className="xl:w-5/12 max-xl:mt-16 max-md:mt-12">
