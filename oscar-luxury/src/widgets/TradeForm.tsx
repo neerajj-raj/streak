@@ -18,18 +18,8 @@ import Toast from "@common/components/Toast";
 import DropDownIcon from "@common/icons/DropDownIcon";
 import TradeInUploadFile from "@common/components/TradeInUploadFile";
 
-type Category = {
-  id: number;
-  name: string;
-  slug: string;
-  children?: Category[];
-};
 
-type TradeFormProps = {
-  categories: Category[];
-};
-
-const TradeForm = ({ categories = [] }: TradeFormProps) => {
+const TradeForm = () => {
   const condition = ["Excellent", "Good", "Fair"];
   return (
     <>
@@ -42,69 +32,24 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
 
       {/* ================= FORM ================= */}
       <form id="trade-in-form" className="grid grid-cols-1 md:grid-cols-2 gap-5" >
-        {/* ================= BRAND ================= */}
-        <div>
-          <label className="text-sm font-medium mb-1.5 block">
-            Brand <span className="text-red-600 font-semibold"> *</span>
-          </label>
-          <div className="relative">
-            <button
-              type="button"
-              id="brand-btn"
-              className="relative flex w-full items-center rounded-lg border border-slate-300 bg-white px-4 h-10 text-sm text-left text-slate-900 focus:border-amber-400 mt-0"
-            >
-              <span id="brand-text" className="flex-1 truncate text-slate-400">
-                Select Brand
-              </span>
-              <DropDownIcon />
-            </button>
-
-            <div
-              id="brand-list"
-              className="hidden max-h-52 overflow-auto py-1 absolute rounded-lg border border-slate-200 bg-white shadow-lg w-full mt-2 z-50"
-            >
-              {categories.map((cat) => (
-                <button
-                  type="button"
-                  key={cat.slug}
-                  data-slug={cat.slug}
-                  data-model={JSON.stringify(cat.children || [])}
-                  className="w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-slate-100"
-                >
-                  {cat.name}
-                </button>
-              ))}
-            </div>
-
-            <input type="hidden" id="brand-input" name="brand" />
-          </div>
-          <p id="error-brand" className="text-xs text-red-500 mt-1 hidden" />
-        </div>
 
         {/* ================= MODEL ================= */}
         <div>
-          <label className="text-sm font-medium mb-1.5 block">Model</label>
-          <div className="relative">
-            <button
-              type="button"
-              id="model-btn"
-              className="relative flex w-full items-center rounded-lg border border-slate-300 bg-white px-4 h-10 text-sm text-left text-slate-900 focus:border-amber-400"
-            >
-              <span id="model-text" className="flex-1 truncate text-slate-400">
-                Select Model
-              </span>
-              <DropDownIcon />
-            </button>
-
-            <div
-              id="model-list"
-              className="hidden max-h-52 overflow-auto py-1 absolute rounded-lg border border-slate-200 bg-white shadow-lg w-full mt-2 z-50"
-            />
-
-            <input type="hidden" id="model-input" name="model" />
-          </div>
-          <p id="error-model" className="text-xs text-red-500 mt-1 hidden" />
+          <label className="text-sm font-medium mb-1.5 block">
+            Current Model <span className="text-red-600 font-semibold"> *</span>
+          </label>
+          <Input id="current-model" type="text" placeholder="Model" />
+          <p id="error-current-model" className="text-xs text-red-500 mt-1 hidden" />
         </div>
+        {/* ================= CAR ================= */}
+        <div>
+          <label className="text-sm font-medium mb-1.5 block">
+            Car You Want <span className="text-red-600 font-semibold"> *</span>
+          </label>
+          <Input id="car-you-want" type="text" placeholder="Car you want" />
+          <p id="error-car-you-want" className="text-xs text-red-500 mt-1 hidden" />
+        </div>
+
 
         {/* ================= YEAR ================= */}
         <div>
@@ -120,7 +65,7 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
           <label className="text-sm font-medium mb-1.5 block">
             Mileage (km) <span className="text-red-600 font-semibold"> *</span>
           </label>
-          <Input id="cars_model" type="text" placeholder="Mileage" />
+          <Input id="mileage" type="text" placeholder="Mileage" />
           <p id="error-mileage" className="text-xs text-red-500 mt-1 hidden" />
         </div>
 
@@ -211,8 +156,8 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
       <Script id="trade-in-form" options={{
         wp: { id: "16436", post_id: "16436", author: "1", token: "" },
         fieldMap: {
-          brand: 7,
-          model: 8,
+          currentModel: 16,
+          carYouWant: 17,
           year: 10,
           mileage: 11,
           condition: 12,
@@ -230,8 +175,6 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
           if ((window as any).__tradeInFormInit) return;
           (window as any).__tradeInFormInit = true;
 
-
-
           const ready = (fn: () => void) => {
             if (document.readyState !== "loading") fn();
             else document.addEventListener("DOMContentLoaded", fn);
@@ -241,30 +184,22 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
             const form = document.getElementById("trade-in-form") as HTMLFormElement | null;
             if (!form) return;
 
-            const brandBtn = document.getElementById("brand-btn") as HTMLButtonElement | null;
-            const brandText = document.getElementById("brand-text") as HTMLSpanElement | null;
-            const brandList = document.getElementById("brand-list") as HTMLDivElement | null;
-            const brandInput = document.getElementById("brand-input") as HTMLInputElement | null;
-
-            const modelBtn = document.getElementById("model-btn") as HTMLButtonElement | null;
-            const modelText = document.getElementById("model-text") as HTMLSpanElement | null;
-            const modelList = document.getElementById("model-list") as HTMLDivElement | null;
-            const modelInput = document.getElementById("model-input") as HTMLInputElement | null;
-
+            const carEl = document.getElementById("car-you-want") as HTMLInputElement | null;
+            const modelEl = document.getElementById("current-model") as HTMLInputElement | null;
             const conditionBtn = document.getElementById("condition-btn") as HTMLButtonElement | null;
             const conditionText = document.getElementById("condition-text") as HTMLSpanElement | null;
             const conditionList = document.getElementById("condition-list") as HTMLDivElement | null;
             const conditionInput = document.getElementById("condition-input") as HTMLInputElement | null;
 
             const yearEl = document.getElementById("year") as HTMLInputElement | null;
-            const mileageEl = document.getElementById("cars_model") as HTMLInputElement | null;
+            const mileageEl = document.getElementById("mileage") as HTMLInputElement | null;
             const nameEl = document.getElementById("first-name") as HTMLInputElement | null;
             const phoneEl = document.getElementById("phone") as HTMLInputElement | null;
 
             const dropzoneEl = document.getElementById("upload-dropzone") as HTMLElement | null;
 
-            const errorBrand = document.getElementById("error-brand");
-            const errorModel = document.getElementById("error-model");
+            const errorCar = document.getElementById("error-car-you-want");
+            const errorModel = document.getElementById("error-current-model");
             const errorYear = document.getElementById("error-year");
             const errorMileage = document.getElementById("error-mileage");
             const errorCondition = document.getElementById("error-condition");
@@ -279,9 +214,9 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
 
             const toast = document.getElementById("toast") as HTMLElement | null;
 
-            let hasModels = true;
-
             // ---------- helpers ----------
+
+
             const showError = (el: HTMLElement | null, msg: string) => {
               if (!el) return;
               el.textContent = msg;
@@ -352,152 +287,28 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
               el.focus();
             };
 
-            // ---------- MODEL DATA BUILD ----------
-            let allModels: { name: string }[] = [];
-            try {
-              const raw = Array.from(
-                (document.getElementById("brand-list")?.querySelectorAll("[data-model]") || [])
-              );
-              raw.forEach((el) => {
-                const json = el.getAttribute("data-model") || "[]";
-                const models = JSON.parse(json);
-                if (Array.isArray(models)) {
-                  models.forEach((m) => {
-                    if (m?.name) allModels.push({ name: m.name });
-                  });
-                }
-              });
-            } catch { }
+            // ---------- AUTO POPULATE FROM URL ----------
+            const params = new URLSearchParams(window.location.search);
 
-            function renderModels(models: any[]) {
-              if (!modelList || !modelBtn || !modelText || !modelInput) return;
+            const modelFromUrl = params.get("model");
+            const wantFromUrl = params.get("want");
 
-              modelList.innerHTML = "";
-
-              if (!models.length) {
-                hasModels = false;
-
-                // Disable model field
-                modelBtn.disabled = true;
-                modelBtn.classList.add("opacity-50", "cursor-not-allowed");
-                modelText.textContent = "No models available";
-                modelText.classList.add("text-slate-400");
-
-                modelInput.value = "";
-                hideError(errorModel);
-                clearInvalid(modelBtn);
-
-                return;
-              }
-
-              // Enable model field
-              hasModels = true;
-              modelBtn.disabled = false;
-              modelBtn.classList.remove("opacity-50", "cursor-not-allowed");
-              modelText.textContent = "Select Model";
-              modelText.classList.add("text-slate-400");
-
-              models.forEach((m) => {
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.textContent = m.name;
-                btn.className =
-                  "w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-slate-100";
-
-                btn.addEventListener("click", () => {
-                  modelInput.value = m.name;
-                  modelText.textContent = m.name;
-                  modelText.classList.remove("text-slate-400");
-
-                  hideError(errorModel);
-                  clearInvalid(modelBtn);
-                  modelList.classList.add("hidden");
-                });
-
-                modelList.appendChild(btn);
-              });
+            if (modelFromUrl && modelEl) {
+              modelEl.value = modelFromUrl;
+              hideError(errorModel);
+              clearInvalid(modelEl);
             }
 
+            if (wantFromUrl && carEl) {
+              carEl.value = wantFromUrl;
+              hideError(errorCar);
+              clearInvalid(carEl);
+            }
 
-            renderModels(allModels);
+            // Auto-validate prefilled fields
+            if (modelFromUrl) validateCurrentModel();
+            if (wantFromUrl) validateCarYouWant();
 
-            // ---------- Brand dropdown ----------//
-            brandBtn?.addEventListener("click", (e) => {
-              e.stopPropagation();
-              brandList?.classList.toggle("hidden");
-            });
-
-            brandList?.querySelectorAll("[data-slug]").forEach((el) => {
-              el.addEventListener("click", (e) => {
-                e.stopPropagation();
-
-                const name = el.textContent || "";
-                const modelsJson = el.getAttribute("data-model") || "[]";
-
-                let models: any[] = [];
-                try {
-                  models = JSON.parse(modelsJson);
-                } catch { }
-
-                if (brandInput) brandInput.value = name;
-                if (brandText) {
-                  brandText.textContent = name;
-                  brandText.classList.remove("text-slate-400");
-                }
-
-                hideError(errorBrand);
-                clearInvalid(brandBtn);
-
-                // ✅ RESET MODEL (THIS ANSWERS YOUR QUESTION)
-                if (modelInput) modelInput.value = "";
-                if (modelText) {
-                  modelText.textContent = "Select Model";
-                  modelText.classList.add("text-slate-400");
-                }
-                hideError(errorModel);
-                clearInvalid(modelBtn);
-
-                // ✅ Now apply brand-specific models
-                renderModels(models);
-
-                brandList?.classList.add("hidden");
-              });
-            });
-
-
-            //-----------Model dropdown ----------------//
-
-            modelBtn?.addEventListener("click", (e) => {
-              if (!hasModels) return;
-              e.stopPropagation();
-              modelList?.classList.toggle("hidden");
-            });
-
-
-            modelList?.querySelectorAll("[data-slug]").forEach((el) => {
-              el.addEventListener("click", (e) => {
-                e.stopPropagation();
-
-                const name = el.textContent || "";
-                const modelsJson = el.getAttribute("data-model") || "[]";
-
-                let models: any[] = [];
-                try {
-                  models = JSON.parse(modelsJson);
-                } catch { }
-
-                if (modelInput) modelInput.value = name;
-                if (modelText) {
-                  modelText.textContent = name;
-                  modelText.classList.remove("text-slate-400");
-                }
-
-                hideError(errorModel);
-
-                renderModels(models);
-                modelList?.classList.add("hidden");
-              });
-            });
 
             //----------- Condition dropdown ----------------//
 
@@ -526,43 +337,6 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
             document.addEventListener("click", (e) => {
               const target = e.target as Node;
 
-              // ---------- BRAND ----------
-              if (
-                brandList &&
-                brandBtn &&
-                !brandBtn.contains(target) &&
-                !brandList.contains(target)
-              ) {
-                brandList.classList.add("hidden");
-
-                if (!brandInput?.value && brandText) {
-                  brandText.textContent = "Select Brand";
-                  brandText.classList.add("text-slate-400");
-                }
-              }
-              // ---------- MODEL ----------
-              if (
-                modelList &&
-                modelBtn &&
-                !modelBtn.contains(target) &&
-                !modelList.contains(target)
-              ) {
-                modelList.classList.add("hidden");
-
-                // 🔥 IMPORTANT FIX
-                if (!hasModels) {
-                  // brand-inu models illa → text change cheyyaruthu
-                  modelText!.textContent = "No models available";
-                  modelText!.classList.add("text-slate-400");
-                  return;
-                }
-
-                if (!modelInput?.value && modelText) {
-                  modelText.textContent = "Select Model";
-                  modelText.classList.add("text-slate-400");
-                }
-              }
-
               // ---------- CONDITION ----------
               if (
                 conditionList &&
@@ -580,15 +354,50 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
             });
 
 
-            // ---------- VALIDATORS ----------
-            function validateBrand(): boolean {
-              if (!brandInput?.value) {
-                showError(errorBrand, "Select brand");
-                markInvalid(brandBtn);
+            // ---------- VALIDATORS ---------
+
+            function validateCurrentModel(): boolean {
+              const v = modelEl?.value.trim() || "";
+              clearInvalid(modelEl);
+
+              if (!v) {
+                showError(errorModel, "Enter current model");
+                markInvalid(modelEl);
                 return false;
               }
-              hideError(errorBrand);
-              clearInvalid(brandBtn);
+              if (!/^[A-Za-z0-9\- ]+$/.test(v)) {
+                showError(errorModel, "Only letters, numbers and hyphen allowed");
+                markInvalid(modelEl);
+                return false;
+              }
+              if (v.length < 2) {
+                showError(errorModel, "Must be minimum 2 characters");
+                markInvalid(modelEl);
+                return false;
+              }
+              hideError(errorModel);
+              return true;
+            }
+
+            function validateCarYouWant(): boolean {
+              const v = carEl?.value.trim() || "";
+              clearInvalid(carEl);
+              if (!v) {
+                showError(errorCar, "Enter desired car");
+                markInvalid(carEl);
+                return false;
+              }
+              if (!/^[A-Za-z0-9\- ]+$/.test(v)) {
+                showError(errorCar, "Only letters, numbers and hyphen allowed");
+                markInvalid(carEl);
+                return false;
+              }
+              if (v.length < 3) {
+                showError(errorCar, "Must be minimum 3 letters");
+                markInvalid(carEl);
+                return false;
+              }
+              hideError(errorCar);
               return true;
             }
 
@@ -730,8 +539,8 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
                   }
                 }
               };
-
-              check(validateBrand(), brandBtn);
+              check(validateCurrentModel(), modelEl);
+              check(validateCarYouWant(), carEl);
               check(validateYear(), yearEl);
               check(validateMileage(), mileageEl);
               check(validateCondition(), conditionBtn);
@@ -746,20 +555,7 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
               return isValid;
             }
 
-            const resetDropdown = () => {
-              if (brandInput) brandInput.value = "";
-              if (brandText) {
-                brandText.textContent = "Select Brand";
-                brandText.classList.add("text-slate-400");
-              }
-              brandList?.classList.add("hidden");
-
-              if (modelInput) modelInput.value = "";
-              if (modelText) {
-                modelText.textContent = "Select Model";
-                modelText.classList.add("text-slate-400");
-              }
-
+            const resetCondition = () => {
               if (conditionInput) conditionInput.value = "";
               if (conditionText) {
                 conditionText.textContent = "Select Condition";
@@ -768,6 +564,8 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
             };
 
             // ---------- LIVE VALIDATION ----------
+            modelEl?.addEventListener("blur", validateCurrentModel);
+            carEl?.addEventListener("blur", validateCarYouWant);
             yearEl?.addEventListener("blur", validateYear);
             mileageEl?.addEventListener("blur", validateMileage);
             nameEl?.addEventListener("blur", validateName);
@@ -793,8 +591,8 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
             // ---------- gather values ----------
             function gatherValues() {
               return {
-                brand: brandInput?.value || "",
-                model: modelInput?.value || "",
+                currentModel: modelEl?.value.trim() || "",
+                carYouWant: carEl?.value.trim() || "",
                 year: yearEl?.value.trim() || "",
                 mileage: mileageEl?.value.trim() || "",
                 condition: conditionInput?.value || "",
@@ -839,8 +637,8 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
                 fd.append("page_url", location.href);
 
                 const F = opts.fieldMap;
-                fd.append(`wpforms[fields][${F.brand}]`, v.brand);
-                fd.append(`wpforms[fields][${F.model}]`, v.model);
+                fd.append(`wpforms[fields][${F.carYouWant}]`, v.carYouWant);
+                fd.append(`wpforms[fields][${F.currentModel}]`, v.currentModel);
                 fd.append(`wpforms[fields][${F.year}]`, v.year);
                 fd.append(`wpforms[fields][${F.mileage}]`, v.mileage);
                 fd.append(`wpforms[fields][${F.condition}]`, v.condition);
@@ -873,7 +671,7 @@ const TradeForm = ({ categories = [] }: TradeFormProps) => {
                 if (success) {
                   showToast();
                   form?.reset();
-                  resetDropdown();
+                  resetCondition();
                   clearWaitMessageIfShown();
 
                   (window as any).__tradeInUploadedFiles = [];

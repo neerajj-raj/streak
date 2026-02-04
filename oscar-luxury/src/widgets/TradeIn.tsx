@@ -13,23 +13,14 @@
 import TradeForm from "./TradeForm";
 import TradeProcess from "./TradeProcess";
 
-type TradeInProps = {
-  data?: {
-    categories: any[];
-  };
-};
 
-const TradeIn = ({ data }: TradeInProps) => {
-  const categories = data?.categories ?? [];
-
+const TradeIn = () => {
   return (
     <section className="py-10 md:py-14 lg:py-24">
       <div className="container">
         <div className="xl:flex xl:gap-20">
           <div className="xl:w-7/12">
-            <TradeForm
-              categories={categories}
-            />
+            <TradeForm/>
           </div>
           <div className="xl:w-5/12 max-xl:mt-16 max-md:mt-12">
             <div className="sticky top-[calc(var(--header-height)+2rem)]">

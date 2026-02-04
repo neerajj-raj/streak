@@ -11,7 +11,7 @@
  * @author Minna Ancy Mathew
  */
 
-import { getMenuContents, getPageContentBySlug, getPlpFilters } from "@services/wordPress";
+import { getMenuContents, getPageContentBySlug } from "@services/wordPress";
 import { getPageUrl, splitMenuItemsBySlug } from "@utils/commonUtils";
 
 export const getTradeInData = async () => {
@@ -20,10 +20,6 @@ export const getTradeInData = async () => {
     getMenuContents(),
     getPageContentBySlug("streak-trade-in"),
   ]);
-
-
-  const plpFiltersResponse = await getPlpFilters();
-  const categories = plpFiltersResponse?.categories ?? [];
 
   const tradeInAcfContents = pageContents?.[0]?.acf ?? {};
   const { headerMenu, inventoryMenu, footerQuickLinks } = splitMenuItemsBySlug(menuContents);
@@ -50,9 +46,6 @@ export const getTradeInData = async () => {
         { label: "Home", href: "/" },
         { label: "Trade In", href: "/trade-in" },
       ],
-    },
-    TradeIn: {
-      categories,
     },
 
   };
