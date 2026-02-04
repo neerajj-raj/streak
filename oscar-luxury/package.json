@@ -1,0 +1,32 @@
+{
+  "name": "oscar-luxury",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8000 --directory out",
+    "css-build": "tailwindcss -i ./src/common/styles/input.css -o ./public/styles/tailwind.css",
+    "css-dev": "tailwindcss -i ./src/common/styles/input.css -o ./public/styles/tailwind.css --watch",
+    "dev:streak": "streak-forge dev",
+    "dev": "concurrently -k -n TAILWIND,STREAK -c blue,green \"bun run css-dev\" \"bun run dev:streak\"",
+    "build": "bun run css-build && streak-forge pre-build"
+  },
+  "keywords": [],
+  "author": "Neeraj",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "streak": "./streak-forge-2.0.29.tgz",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "@tailwindcss/postcss": "^4",
+    "autoprefixer": "^10.4.22",
+    "bun": "^1.2.21",
+    "concurrently": "^9.2.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
+  }
+}

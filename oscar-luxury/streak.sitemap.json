@@ -1,0 +1,824 @@
+[
+  {
+    "url": "/",
+    "renderConfig": {
+      "renderId": "homeRenderId",
+      "metadata": {},
+      "dataHandler": "HomeDataHandler",
+      "rootLayout": "HomeLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "HomeHeroBanner",
+          "type": "HomeHeroBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "FeaturedDealers",
+          "type": "FeaturedDealers",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "QuickContact",
+          "type": "QuickContact",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/about-us",
+    "renderConfig": {
+      "renderId": "aboutRenderId",
+      "metadata": {},
+      "dataHandler": "AboutDataHandler",
+      "rootLayout": "AboutLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "AboutDescription",
+          "type": "AboutDescription"
+        },
+        {
+          "id": "AboutWhyChoose",
+          "type": "AboutWhyChoose",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "HomeTestimonials",
+          "type": "HomeTestimonials",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "AboutClients",
+          "type": "AboutClients",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/privacy-policy",
+    "renderConfig": {
+      "renderId": "privacyRenderId",
+      "metadata": {},
+      "dataHandler": "PrivacyDataHandler",
+      "rootLayout": "PrivacyLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PrivacyContent",
+          "type": "PrivacyContent"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/blogs",
+    "renderConfig": {
+      "renderId": "blogsRenderId",
+      "metadata": {},
+      "dataHandler": "BlogsDataHandler",
+      "rootLayout": "BlogsLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "BlogListing",
+          "type": "BlogListing"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/blog-details",
+    "renderConfig": {
+      "renderId": "blog-deatilsRenderId",
+      "metadata": {},
+      "dataHandler": "BlogDetailsDataHandler",
+      "rootLayout": "BlogDetailsLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "BlogDetails",
+          "type": "BlogDetails"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/terms-and-conditions",
+    "renderConfig": {
+      "renderId": "termsRenderId",
+      "metadata": {},
+      "dataHandler": "TermsDataHandler",
+      "rootLayout": "TermsLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "TermsContent",
+          "type": "TermsContent"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad_category/mercedes/",
+    "renderConfig": {
+      "renderId": "/ad_category/mercedes/",
+      "metadata": {
+        "url": "/ad_category/mercedes/"
+      },
+      "dataHandler": "PLPDataHandler",
+      "rootLayout": "PLPLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PLPListing",
+          "type": "PLPListing"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad_category/range-rover/",
+    "renderConfig": {
+      "renderId": "/ad_category/range-rover/",
+      "metadata": {
+        "url": "/ad_category/range-rover/"
+      },
+      "dataHandler": "PLPDataHandler",
+      "rootLayout": "PLPLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PLPListing",
+          "type": "PLPListing"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad_category/land-rover/",
+    "renderConfig": {
+      "renderId": "/ad_category/land-rover/",
+      "metadata": {
+        "url": "/ad_category/land-rover/"
+      },
+      "dataHandler": "PLPDataHandler",
+      "rootLayout": "PLPLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PLPListing",
+          "type": "PLPListing"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad_category/rolls-royce/",
+    "renderConfig": {
+      "renderId": "/ad_category/rolls-royce/",
+      "metadata": {
+        "url": "/ad_category/rolls-royce/"
+      },
+      "dataHandler": "PLPDataHandler",
+      "rootLayout": "PLPLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PLPListing",
+          "type": "PLPListing"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad_category/bentley/",
+    "renderConfig": {
+      "renderId": "/ad_category/bentley/",
+      "metadata": {
+        "url": "/ad_category/bentley/"
+      },
+      "dataHandler": "PLPDataHandler",
+      "rootLayout": "PLPLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PLPListing",
+          "type": "PLPListing"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad_category/porsche/",
+    "renderConfig": {
+      "renderId": "/ad_category/porsche/",
+      "metadata": {
+        "url": "/ad_category/porsche/"
+      },
+      "dataHandler": "PLPDataHandler",
+      "rootLayout": "PLPLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PLPListing",
+          "type": "PLPListing"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad_tag/luxurycars/",
+    "renderConfig": {
+      "renderId": "/ad_tag/luxurycars/",
+      "metadata": {
+        "url": "/ad_tag/luxurycars/"
+      },
+      "dataHandler": "PLPDataHandler",
+      "rootLayout": "PLPLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PLPListing",
+          "type": "PLPListing"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad_country/uae/",
+    "renderConfig": {
+      "renderId": "/ad_country/uae/",
+      "metadata": {
+        "url": "/ad_country/uae/"
+      },
+      "dataHandler": "PLPDataHandler",
+      "rootLayout": "PLPLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PLPListing",
+          "type": "PLPListing"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad/mercedes-benz-a-class-amg-a-45/",
+    "renderConfig": {
+      "renderId": "/ad/mercedes-benz-a-class-amg-a-45/",
+      "metadata": { "url": "/ad/mercedes-benz-a-class-amg-a-45/" },
+      "dataHandler": "PdpDataHandler",
+      "rootLayout": "PdpLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "Breadcrumb",
+          "type": "Breadcrumb"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PDPContent",
+          "type": "PDPContent"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad/porsche-911-carrera/",
+    "renderConfig": {
+      "renderId": "/ad/porsche-911-carrera/",
+      "metadata": { "url": "/ad/porsche-911-carrera/" },
+      "dataHandler": "PdpDataHandler",
+      "rootLayout": "PdpLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "Breadcrumb",
+          "type": "Breadcrumb"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PDPContent",
+          "type": "PDPContent"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/ad/land-rover-defender-525-v8-edition/",
+    "renderConfig": {
+      "renderId": "/ad/land-rover-defender-525-v8-edition/",
+      "metadata": { "url": "/ad/land-rover-defender-525-v8-edition/" },
+      "dataHandler": "PdpDataHandler",
+      "rootLayout": "PdpLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "Breadcrumb",
+          "type": "Breadcrumb"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "PDPContent",
+          "type": "PDPContent"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/inventory",
+    "renderConfig": {
+      "renderId": "inventoryRenderId",
+      "metadata": {},
+      "dataHandler": "InventoryDataHandler",
+      "rootLayout": "InventoryLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "InventoryListHeader",
+          "type": "InventoryListHeader"
+        },
+        {
+          "id": "InventoryList",
+          "type": "InventoryList",
+          "loadingStrategy": "lazy"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  },
+  {
+    "url": "/contact-us",
+    "renderConfig": {
+      "renderId": "contactRenderId",
+      "metadata": {},
+      "dataHandler": "ContactDataHandler",
+      "rootLayout": "ContactLayout",
+      "widgets": [
+        {
+          "id": "AppHead",
+          "type": "AppHead"
+        },
+        {
+          "id": "CommonTopbar",
+          "type": "CommonTopbar"
+        },
+        {
+          "id": "CommonHeader",
+          "type": "CommonHeader"
+        },
+        {
+          "id": "BreadcrumbsBanner",
+          "type": "BreadcrumbsBanner"
+        },
+        {
+          "id": "Contact",
+          "type": "Contact"
+        },
+        {
+          "id": "AnimationHelpers",
+          "type": "AnimationHelpers"
+        },
+        {
+          "id": "CommonFooter",
+          "type": "CommonFooter",
+          "loadingStrategy": "lazy"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  }
+
+]
