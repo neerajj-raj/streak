@@ -81,7 +81,7 @@ const QuickContact = (props: QuickContactProps) => {
           <a
             type="button"
             className="inline-flex items-center justify-center gap-2 font-semibold text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:pointer-events-none disabled:opacity-60 rounded-lg 2xl:rounded-xl px-10 py-3 2xl:py-4 w-full md:w-auto border border-white text-white hover:bg-white/10"
-            href="http://oscarluxury.com/contact-us/"
+            href="/contact-us/"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
